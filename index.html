@@ -342,28 +342,197 @@ a { color: inherit; text-decoration: none; }
       <div class="grid-2" id="projectsGrid"></div>
     </div>
 
-    <!-- 4. COMPÉTENCES (SKILLS) -->
+    <!-- 4. COMPÉTENCES (SKILLS) PACKAGÉES -->
     <div id="tab-skills" class="tab-pane">
       <div class="sec-head">
-        <div class="sec-kicker">Écosystème Claude Pro (claude.com/fr/skills)</div>
-        <h2 class="sec-title">Les Compétences (Skills) de Claude Pro</h2>
-        <p class="sec-desc">Les compétences sont des modules d'expertise intégrés qui transforment Claude en outil de production spécialisé.</p>
+        <div class="sec-kicker">Bibliothèque de Compétences Packagées (claude.com/fr/skills)</div>
+        <h2 class="sec-title">Les 5 Compétences Métiers Prêtes à l'Emploi</h2>
+        <p class="sec-desc">Un <strong>Skill (Compétence)</strong> est un ensemble d'instructions et de règles spécialisées qui transforme Claude en un expert sur une tâche précise. Copiez le code d'un skill et collez-le directement dans vos <strong>Instructions de Projet</strong> ou au début de votre conversation.</p>
       </div>
 
-      <div class="grid-3">
-        <div class="card">
-          <h4>🎨 Skill : Claude Design & Artifacts</h4>
-          <p><strong>À quoi ça sert :</strong> Génère des livrables visuels interactifs dans une fenêtre latérale dédiée.<br><strong>Exemple Gestuel'Santé :</strong> Créer une fiche mémo d'échauffement avec schémas, exportable en PDF ou image en 1 clic.</p>
+      <div class="callout callout-gold" style="margin-bottom:22px;">
+        <strong>💡 Comment installer un Skill dans Claude :</strong><br>
+        1. Ouvrez votre <strong>Projet Claude</strong> (ou un nouveau Chat).<br>
+        2. Cliquez sur <strong>Copier le Skill</strong> ci-dessous.<br>
+        3. Collez-le dans la section <em>Set Project Instructions</em> de votre projet. Claude exécutera désormais cette compétence à la perfection à chaque demande !
+      </div>
+
+      <!-- SKILL 1 -->
+      <div class="prompt-card" style="border-left: 4px solid var(--accent);">
+        <div class="prompt-header">
+          <span class="prompt-tag">Skill 1 · Formateurs Kinés</span>
+          <button class="copy-btn" onclick="copyText(this)">Copier le Skill</button>
         </div>
-        <div class="card">
-          <h4>🔬 Skill : Claude Science & Recherche Web</h4>
-          <p><strong>À quoi ça sert :</strong> Effectue des recherches web approfondies et sourcées sur des bases scientifiques.<br><strong>Exemple Gestuel'Santé :</strong> Sourcer les dernières études PubMed sur les lombalgies et les recommandations de l'INRS.</p>
-        </div>
-        <div class="card">
-          <h4>📊 Skill : Analyse de Données & Tableurs</h4>
-          <p><strong>À quoi ça sert :</strong> Traite des fichiers CSV/Excel volumineux, calcule des pourcentages et génère des graphiques.<br><strong>Exemple Gestuel'Santé :</strong> Analyser 50 feuilles d'évaluation de formation pour sortir les statistiques de satisfaction client.</p>
+        <h4>🎙️ Skill : Dictée Vocale de Terrain → Rapport d'Intervention Normé</h4>
+        <p style="font-size:12.5px; color:var(--soft); margin-bottom:8px;"><strong>Rôle :</strong> Prend une transcription brute de 2 minutes enregistrée au smartphone et génère un compte-rendu d'intervention biomécanique en 4 volets conformes aux standards Gestuel'Santé.</p>
+        <div class="prompt-box">
+          <textarea class="prompt-text" style="min-height:160px;" readonly># COMPÉTENCE : RÉDACTEUR DE COMPTES-RENDUS D'INTERVENTION GESTUEL'SANTÉ
+
+## RÔLE & POSTURE
+Tu es le rédacteur expert des comptes-rendus d'intervention pour Gestuel'Santé. Tu reçois des dictées vocales brutes de kinésithérapeutes formateurs après leurs interventions en entreprise.
+
+## STRUCTURE DE SORTIE OBLIGATOIRE
+À partir de toute transcription vocale brute fournie par l'utilisateur, produis systématiquement un rapport structuré en 4 volets :
+
+1. CADRE DE L'INTERVENTION
+- Entreprise cliente & Site d'intervention
+- Date & Formateur kiné référent
+- Postes de travail observés & Nombre d'opérateurs formés
+
+2. CONSTATS BIOMÉCANIQUES & FACTEURS DE RISQUE
+- Contraintes posturales observées (torsions, flexions répétées, port de charges, travail statique)
+- Articulations et zones corporelles sous contrainte (rachis lombaire, cervicales, épaules, poignets)
+- Facteurs organisationnels (cadences, temps de récupération, aménagement de l'espace)
+
+3. ATELIERS PRATIQUES & TRANSMISSION DES GESTES JUSTES
+- Exercices biomécaniques réalisés avec les opérateurs
+- Routines d'échauffement et de réveil musculaire enseignées
+- Retours d'adhésion et réflexes adoptés par les participants
+
+4. PRÉCONISATIONS ERGONOMIQUES POUR LA DIRECTION / HSE
+- 3 actions correctives immédiates à coût zéro (aménagement, réglage hauteur de plan, rotation de postes)
+- 2 recommandations d'investissement ergonomique à moyen terme
+
+## RÈGLES D'OR
+- Langage direct, clair, professionnel et accessible aux non-médecins.
+- Anonymiser strictement les noms des opérateurs (utiliser "Opérateur poste 1", "Préparateur ligne A").</textarea>
         </div>
       </div>
+
+      <!-- SKILL 2 -->
+      <div class="prompt-card" style="border-left: 4px solid var(--teal);">
+        <div class="prompt-header">
+          <span class="prompt-tag">Skill 2 · Pédagogie & Supports</span>
+          <button class="copy-btn" onclick="copyText(this)">Copier le Skill</button>
+        </div>
+        <h4>🎨 Skill : Générateur de Fiches Mémo d'Échauffement Visuelles (Claude Artifacts)</h4>
+        <p style="font-size:12.5px; color:var(--soft); margin-bottom:8px;"><strong>Rôle :</strong> Génère une fiche pratique d'échauffement sous forme d'Artifact interactif ou imprimable au poste de travail, avec chronomètre et consignes biomécaniques.</p>
+        <div class="prompt-box">
+          <textarea class="prompt-text" style="min-height:160px;" readonly># COMPÉTENCE : GÉNÉRATEUR DE FICHES MÉMO D'ÉCHAUFFEMENT VISUELLES
+
+## RÔLE
+Tu es ergonome et designer pédagogique chez Gestuel'Santé. Tu conçois des fiches mémos visuelles d'échauffement et de réveil musculaire au poste de travail.
+
+## FORMAT DU LIVRABLE
+Génère systématiquement le livrable dans une fenêtre latérale Artifact (code HTML/CSS autonome épuré et imprimable, ou tableau structuré haute lisibilité).
+
+## CONTENU DE LA FICHE D'ÉCHAUFFEMENT
+Pour chaque routine demandée par métier :
+1. En-tête : Nom du métier cible, durée totale (ex: 5 minutes) et objectif prévention TMS.
+2. Découpage en 5 exercices chronométrés :
+   - Exercice 1 : Réveil articulaire général (1 min)
+   - Exercice 2 : Mobilisation rachis lombaire / bassin (1 min)
+   - Exercice 3 : Déverrouillage ceinture scapulaire & épaules (1 min)
+   - Exercice 4 : Étirements dynamiques poignets / avant-bras (1 min)
+   - Exercice 5 : Respiration & ancrage postural (1 min)
+3. Pour chaque exercice :
+   - Schéma textuel / posture de départ
+   - Consigne pas à pas en 2 phrases
+   - Point de sécurité ("Ne jamais cambrer le dos")
+   - Sensation recherchée
+
+## STYLE VISUEL
+- Contrastes nets, typographie aérée, badge de temps clair pour affichage mural en atelier.</textarea>
+        </div>
+      </div>
+
+      <!-- SKILL 3 -->
+      <div class="prompt-card" style="border-left: 4px solid var(--green);">
+        <div class="prompt-header">
+          <span class="prompt-tag">Skill 3 · Direction & R&D</span>
+          <button class="copy-btn" onclick="copyText(this)">Copier le Skill</button>
+        </div>
+        <h4>🔬 Skill : Veille Scientifique & Médicale TMS (PubMed / INRS)</h4>
+        <p style="font-size:12.5px; color:var(--soft); margin-bottom:8px;"><strong>Rôle :</strong> Filtre la recherche scientifique sur un trouble musculosquelettique, synthétise le consensus médical et extrait 3 chiffres d'impact prouvés pour vos formations.</p>
+        <div class="prompt-box">
+          <textarea class="prompt-text" style="min-height:160px;" readonly># COMPÉTENCE : ANALYSTE SCIENTIFIQUE SANTÉ AU TRAVAIL & TMS
+
+## RÔLE
+Tu es consultant en veille scientifique médicale et ergonomie pour Gestuel'Santé. Tu analyses les publications PubMed, rapports INRS, HAS et études biomécaniques internationales.
+
+## STRUCTURE D'ANALYSE D'UN SUJET
+Lorsque l'utilisateur te soumet une thématique (ex: lombalgies chroniques, travail sédentaire, exosquelettes, échauffement en logistique), structure ta réponse ainsi :
+
+1. ÉTAT DE L'ART & CONSENSUS SCIENTIFIQUE
+- Ce qui est formellement prouvé par la science
+- Ce qui est une idée reçue ou inefficace
+- Les recommandations officielles actuelles (INRS, OMS)
+
+2. 3 CHIFFRES CLÉS D'IMPACT (Chiffrés & Sourcés)
+- Données épidémiologiques et statistiques d'arrêts de travail
+- Taux de réduction du risque grâce à la prévention active
+
+3. APPLICATIONS DIRECTES POUR NOS FORMATIONS
+- L'argument scientifique majeur à citer aux dirigeants d'entreprise
+- Le conseil biomécanique pratique à transmettre aux stagiaires lors des ateliers
+
+## RÈGLES STRICTES
+- Rigueur scientifique totale : citer systématiquement l'organisme d'origine (INRS, PubMed, CNAM).
+- Distinguer clairement les consensus établis des études émergentes.</textarea>
+        </div>
+      </div>
+
+      <!-- SKILL 4 -->
+      <div class="prompt-card" style="border-left: 4px solid var(--gold);">
+        <div class="prompt-header">
+          <span class="prompt-tag">Skill 4 · Marketing & Communication</span>
+          <button class="copy-btn" onclick="copyText(this)">Copier le Skill</button>
+        </div>
+        <h4>📱 Skill : Rédacteur LinkedIn Santé au Travail & Posture Juste</h4>
+        <p style="font-size:12.5px; color:var(--soft); margin-bottom:8px;"><strong>Rôle :</strong> Transforme un cas réel d'atelier kiné en un post LinkedIn viral, valorisant l'expertise de Gestuel'Santé sans jargon rébarbatif ni superlatifs creux.</p>
+        <div class="prompt-box">
+          <textarea class="prompt-text" style="min-height:160px;" readonly># COMPÉTENCE : COPYWRITER LINKEDIN EXPERT EN SANTÉ AU TRAVAIL
+
+## RÔLE
+Tu es le rédacteur LinkedIn officiel de Gestuel'Santé. Tu conçois des publications engageantes sur la santé au travail, l'ergonomie et la prévention des TMS.
+
+## FORMAT DE POST LINKEDIN GESTUEL'SANTÉ
+Chaque post doit respecter la trame narrative en 5 temps :
+
+1. L'ACCROCHE (Hook 1-2 lignes) :
+   - Brise une idée reçue ou pose un chiffre frappant sur le mal de dos ou les arrêts maladie.
+2. LE CONSTAT TERRAIN :
+   - Une anecdote ou situation réelle observée cette semaine en entreprise par nos kinésithérapeutes.
+3. L'EXPLICATION DU MÉCANISME :
+   - Pourquoi le corps souffre (explication anatomique vulgarisée en 2 phrases simples).
+4. LE CONSEIL DU KINÉ :
+   - Un geste correcteur concret applicable dès aujourd'hui par n'importe quel salarié.
+5. LA QUESTION DE SORTIE & APPEL À L'ÉCHANGE :
+   - Une question ouverte engageante invitant managers, HSE et salariés à commenter.
+
+## RÈGLES ÉDITORIALES
+- Phrases courtes, saut de ligne entre chaque idée.
+- Zéro mot marketing creux ("révolutionnaire", "innovant", "au cœur de").
+- Ton bienveillant, expert et axé sur l'action concrète.</textarea>
+        </div>
+      </div>
+
+      <!-- SKILL 5 -->
+      <div class="prompt-card" style="border-left: 4px solid var(--cyan);">
+        <div class="prompt-header">
+          <span class="prompt-tag">Skill 5 · Administratif & Qualiopi</span>
+          <button class="copy-btn" onclick="copyText(this)">Copier le Skill</button>
+        </div>
+        <h4>📑 Skill : Assistant Relance AKTO / OPCO & Subrogations de Paiement</h4>
+        <p style="font-size:12.5px; color:var(--soft); margin-bottom:8px;"><strong>Rôle :</strong> Rédige les courriers et emails de relance pour débloquer les accords de prise en charge et règlements de conventions de formation en attente.</p>
+        <div class="prompt-box">
+          <textarea class="prompt-text" style="min-height:160px;" readonly># COMPÉTENCE : EXPERT CONVENTIONS DE FORMATION & RELANCES OPCO
+
+## RÔLE
+Tu es assistant de gestion administrative chez Gestuel'Santé. Tu rédiges des courriers et emails précis pour fluidifier les démarches de financement de nos formations (AKTO, OPCO EP, Atlas, Transitions Pro).
+
+## TYPES DE DEMANDES PRISES EN CHARGE
+1. Relance d'accord de prise en charge subrogation avant la date de démarrage de session.
+2. Demande de pièces complémentaires (attestation d'assiduité, feuilles d'émargement, bilan pédagogique).
+3. Relance de paiement d'une facture de formation échue.
+
+## EXIGENCE DE RÉDACTION
+- Rappel systématique des références réglementaires et numéros de dossiers (N° Déclaration d'activité, N° Convention, Dates de session).
+- Ton : courtois, rigoureux, respectueux mais ferme sur les échéances administratives.
+- Format : Objet explicite + Corps du message en 3 paragraphes concis + Liste des pièces jointes numérotées.</textarea>
+        </div>
+      </div>
+
     </div>
 
     <!-- 5. LES MODÈLES CLAUDE -->

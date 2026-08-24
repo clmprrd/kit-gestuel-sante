@@ -186,6 +186,7 @@ a { color: inherit; text-decoration: none; }
 /* ══ CARDS & COMPONENTS ══ */
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; }
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 
 .card {
   background: var(--card); border: 1px solid var(--border);
@@ -261,7 +262,7 @@ a { color: inherit; text-decoration: none; }
 .form-control:focus { outline: none; border-color: var(--accent); }
 select.form-control { cursor: pointer; }
 
-/* ══ RESOURCE CARD ══ */
+/* ══ RESOURCE & TOOL CARDS ══ */
 .res-card {
   background: var(--card); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 20px;
@@ -288,6 +289,25 @@ select.form-control { cursor: pointer; }
   text-decoration: underline;
 }
 .res-link:hover { color: var(--white); }
+
+.tool-item {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  transition: all .25s var(--ease);
+}
+.tool-item:hover { border-color: var(--teal); transform: translateY(-3px); }
+.tool-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.tool-icon { font-size: 24px; }
+.tool-name { font-size: 16px; font-weight: 700; }
+.tool-desc { font-size: 13px; color: var(--soft); line-height: 1.55; margin-bottom: 14px; }
+.tool-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+  color: var(--white); padding: 8px 14px; border-radius: 8px;
+  font-size: 12.5px; font-weight: 600; transition: all .2s;
+}
+.tool-btn:hover { background: var(--teal); color: var(--navy); border-color: var(--teal); }
 
 </style>
 </head>
@@ -945,7 +965,7 @@ Produis 3 préconisations ergonomiques prioritaires.</textarea>
   },
   {
     id: "modeles",
-    label: "🤖 6. Les Modèles Claude",
+    label: "🤖 6. Quel Modèle Choisir ?",
     render: () => {
       return `
         <div class="sec-head">
@@ -973,7 +993,7 @@ Produis 3 préconisations ergonomiques prioritaires.</textarea>
   },
   {
     id: "securite",
-    label: "🔒 7. Sécurité & RGPD Santé",
+    label: "🔒 7. Confidentialité & RGPD Santé",
     render: () => {
       return `
         <div class="sec-head">
@@ -1025,33 +1045,81 @@ Produis 3 préconisations ergonomiques prioritaires.</textarea>
     }
   },
   {
-    id: "liens",
-    label: "🔗 9. Liens & Outils Clés",
+    id: "outils",
+    label: "🛠️ 9. Boîte à Outils & Extensions",
+    render: () => {
+      const TOOLS = [
+        { icon: "🧠", name: "Claude.ai Web & Desktop", desc: "Interface principale d'IA générative avec support des Projets et Artifacts.", url: "https://claude.ai" },
+        { icon: "🎙️", name: "Whisper & Dictée Vocale", desc: "Transcription audio instantanée pour convertir vos retours de terrain oraux en texte.", url: "https://openai.com/research/whisper" },
+        { icon: "🔍", name: "Perplexity AI", desc: "Moteur de recherche IA sourcé pour la veille scientifique et l'actualité prévention.", url: "https://www.perplexity.ai" },
+        { icon: "🎨", name: "Gamma App", desc: "Génération automatique de présentations et de documents interactifs prêts à projeter.", url: "https://gamma.app" },
+        { icon: "🎧", name: "NotebookLM", desc: "Carnet de recherche Google sur vos propres PDF avec génération de podcasts audio.", url: "https://notebooklm.google.com" },
+        { icon: "📊", name: "Canva & Genially", desc: "Création de fiches visuelles d'échauffement et d'infographies de prévention.", url: "https://www.canva.com" },
+        { icon: "🔬", name: "PubMed & INRS", desc: "Bases de données médicales et ergonomiques pour valider les consensus scientifiques.", url: "https://pubmed.ncbi.nlm.nih.gov" },
+        { icon: "🛡️", name: "CNIL — Guide IA", desc: "Recommandations et conformité RGPD pour le traitement des données en entreprise.", url: "https://www.cnil.fr/fr/intelligence-artificielle" }
+      ];
+
+      return `
+        <div class="sec-head">
+          <div class="sec-kicker">Écosystème & Productivité</div>
+          <h2 class="sec-title">Les 8 Outils Clés Complémentaires</h2>
+          <p class="sec-desc">Sélection des outils et extensions indispensables pour booster votre pratique quotidienne de l'IA.</p>
+        </div>
+
+        <div class="grid-4">
+          ${TOOLS.map(t => `
+            <div class="tool-item">
+              <div>
+                <div class="tool-top">
+                  <span class="tool-icon">${t.icon}</span>
+                  <div class="tool-name">${t.name}</div>
+                </div>
+                <div class="tool-desc">${t.desc}</div>
+              </div>
+              <a href="${t.url}" target="_blank" class="tool-btn">🚀 Ouvrir l'outil</a>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+  },
+  {
+    id: "ressources",
+    label: "📚 10. Ressources & Contacts",
     render: () => {
       return `
         <div class="sec-head">
           <div class="sec-kicker">Ressources Officielles & Contacts Formateurs</div>
-          <h2 class="sec-title">L'Annuaire Complet des Liens Clés</h2>
-          <p class="sec-desc">Tous les accès directs pour votre usage quotidien de Claude Pro, vos formateurs Axem IA et les sources de référence.</p>
+          <h2 class="sec-title">Pour Aller Plus Loin Après la Session</h2>
+          <p class="sec-desc">Toutes les ressources pour continuer à vous former gratuitement et rester en contact avec Axem IA.</p>
+        </div>
+
+        <div style="background:linear-gradient(135deg,rgba(217,119,87,.16),rgba(14,25,38,.4));border:1px solid rgba(217,119,87,.45);border-radius:16px;padding:22px;margin-bottom:26px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;">
+          <div style="font-size:42px;line-height:1;">👨‍🏫</div>
+          <div style="flex:1;min-width:220px;">
+            <div style="font-size:17px;font-weight:800;color:#fff;margin-bottom:4px;font-family:'Space Grotesk',sans-serif;">Suivez Clément Predo & Alexis Zeitoun sur LinkedIn</div>
+            <div style="font-size:13px;color:var(--soft);margin-bottom:12px;">Vos formateurs publient chaque semaine des retours d'expérience concrets, des prompts testés et les nouveautés IA majeures.</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <a href="https://www.linkedin.com/in/clement-predo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#0A66C2;color:#fff;font-weight:700;font-size:13px;padding:9px 16px;border-radius:8px;text-decoration:none;">in · Clément Predo (30k+)</a>
+              <a href="https://www.linkedin.com/in/alexiszeitoun/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#0A66C2;color:#fff;font-weight:700;font-size:13px;padding:9px 16px;border-radius:8px;text-decoration:none;">in · Alexis Zeitoun (10k+)</a>
+              <a href="https://www.axem-ia.fr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);color:#fff;font-weight:700;font-size:13px;padding:9px 16px;border-radius:8px;text-decoration:none;">🌐 Site Axem IA</a>
+            </div>
+          </div>
         </div>
 
         <div class="grid-2">
           <div class="card">
-            <h4>🌐 Écosystème Claude & Anthropic</h4>
-            <p style="margin-bottom:10px;"><a href="https://claude.ai" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Claude.ai (Interface Web)</a> — Votre espace de travail quotidien.</p>
-            <p style="margin-bottom:10px;"><a href="https://claude.ai/download" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Application Claude Bureau (Mac & Windows)</a> — Raccourci clavier ultra-rapide.</p>
-            <p style="margin-bottom:10px;"><a href="https://claude.ai/settings/capabilities" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Réglages Mémoire & Custom Instructions</a> — Paramétrez votre profil.</p>
-            <p style="margin-bottom:10px;"><a href="https://docs.anthropic.com/en/prompt-library/library" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Bibliothèque Officielle de Prompts Anthropic</a> — Catalogue de compétences prêtes à l'emploi.</p>
-            <p><a href="https://status.anthropic.com" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Statut des Serveurs Claude</a> — Disponibilité en temps réel.</p>
+            <h4>🎓 Formations & Certifications Gratuites</h4>
+            <p style="margin-bottom:8px;"><a href="https://grow.google/intl/fr/ai-trainings/" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Google AI Essentials</a> — Certification pratique sur l'IA au travail (~10h).</p>
+            <p style="margin-bottom:8px;"><a href="https://elementsofai.fr" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Elements of AI (Univ. Helsinki)</a> — Cours d'introduction européen reconnu (~20h).</p>
+            <p style="margin-bottom:8px;"><a href="https://openclassrooms.com" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Objectif IA (OpenClassrooms)</a> — Les fondamentaux en français (5h).</p>
           </div>
 
           <div class="card">
-            <h4>👔 Vos Formateurs & Organismes</h4>
-            <p style="margin-bottom:10px;"><a href="https://www.linkedin.com/in/clement-predo/" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ LinkedIn Clément Predo (Co-fondateur Axem IA · 30k+ abonnés)</a></p>
-            <p style="margin-bottom:10px;"><a href="https://www.linkedin.com/in/alexiszeitoun/" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ LinkedIn Alexis Zeitoun (Co-fondateur Axem IA · 10k+ abonnés)</a></p>
-            <p style="margin-bottom:10px;"><a href="https://www.axem-ia.fr/" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Site officiel Axem IA (axem-ia.fr)</a></p>
-            <p style="margin-bottom:10px;"><a href="https://www.inrs.fr/" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ INRS (Santé et Sécurité au Travail · Prévention TMS)</a></p>
-            <p><a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ PubMed (Base mondiale de recherche biomédicale)</a></p>
+            <h4>🎙️ Podcasts & Veille Recommandée</h4>
+            <p style="margin-bottom:8px;"><a href="https://youtube.com/@Underscore_" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Underscore_ / Micode</a> — Talk-show tech et IA francophone.</p>
+            <p style="margin-bottom:8px;"><a href="https://generationia-asso.fr" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Génération IA</a> — Podcast et décryptages des usages concrets de l'IA.</p>
+            <p style="margin-bottom:8px;"><a href="https://youtube.com/@monsieur_ia" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Monsieur IA (YouTube)</a> — Tutoriels et actualités pratiques.</p>
           </div>
         </div>
       `;

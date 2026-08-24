@@ -1,351 +1,413 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kit Pratique Claude Pro — Gestuel'Santé</title>
+<title>Kit Pratique Claude Pro — Gestuel'Santé | Axem IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 :root {
-  --navy: #090E17; --navy2: #0E1726; --navy3: #162238;
-  --accent: #D97757; --accent-soft: #F2A285; --accent-glow: rgba(217,119,87,0.18);
-  --teal: #38BDF8; --cyan: #7DD3CC; --gold: #FBBF24; --green: #34D399; --red: #F87171; --purple: #A78BFA;
-  --white: #FFFFFF; --soft: #CBD5E1; --muted: #7E92A8; --border: rgba(255,255,255,0.08);
-  --card: #0F1A2A; --card-hover: #142338;
-  --radius: 18px; --radius-sm: 12px;
-  --ease: cubic-bezier(.16,1,.3,1);
-  --shadow: 0 20px 45px -20px rgba(0,0,0,0.75);
-  --shadow-accent: 0 16px 36px -16px rgba(217,119,87,0.4);
+  --bg-base: #070B12;
+  --bg-surface: #0D1524;
+  --bg-card: #121E33;
+  --bg-card-hover: #172742;
+  --bg-card-subtle: rgba(255,255,255,0.03);
+  
+  --border-subtle: rgba(255,255,255,0.07);
+  --border-hover: rgba(217,119,87,0.45);
+  --border-focus: #D97757;
+  
+  --terracotta: #D97757;
+  --terracotta-light: #F2A285;
+  --terracotta-glow: rgba(217,119,87,0.18);
+  
+  --teal: #38BDF8;
+  --teal-glow: rgba(56,189,248,0.15);
+  --mint: #34D399;
+  --mint-glow: rgba(52,211,153,0.15);
+  --amber: #FBBF24;
+  --amber-glow: rgba(251,191,36,0.15);
+  --rose: #FB7185;
+  --indigo: #818CF8;
+  
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-subtle: #64748B;
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter Tight', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --shadow-card: 0 10px 30px -10px rgba(0,0,0,0.6);
+  --shadow-glow: 0 0 35px -5px var(--terracotta-glow);
+  --transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 260ms cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  background: radial-gradient(1200px 700px at 50% -10%, #152338 0%, var(--navy) 50%, #05080E 100%);
-  color: var(--white);
-  font-family: 'Inter Tight', system-ui, sans-serif;
-  min-height: 100vh;
+  background-color: var(--bg-base);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(217, 119, 87, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(13, 21, 36, 1) 0px, transparent 60%);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  line-height: 1.55;
+  min-height: 100vh;
 }
-a { color: inherit; text-decoration: none; }
 
-/* ══ GATE SCREEN ══ */
-#gate {
+/* ══ UTILITIES & ICONS ══ */
+.svg-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+  stroke: currentColor;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+/* ══ GATE SCREEN (PORTAIL NOMINATIF) ══ */
+#gateView {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 50px 24px;
+  padding: 48px 24px;
 }
-.gate-kicker {
+.gate-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--accent-glow);
-  border: 1px solid rgba(217,119,87,0.3);
-  color: var(--accent-soft);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  background: var(--terracotta-glow);
+  border: 1px solid rgba(217,119,87,0.35);
+  color: var(--terracotta-light);
+  font-family: var(--font-mono);
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 2px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
   text-transform: uppercase;
-  padding: 6px 16px;
-  border-radius: 999px;
-  margin-bottom: 18px;
+  letter-spacing: 1px;
 }
-.gate-kicker .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.gate-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--terracotta); box-shadow: 0 0 8px var(--terracotta); }
+
 .gate-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(28px, 5vw, 46px);
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 52px);
   font-weight: 700;
   text-align: center;
-  line-height: 1.1;
+  line-height: 1.15;
   margin-bottom: 12px;
+  letter-spacing: -1px;
 }
-.gate-title span { color: var(--accent-soft); }
-.gate-sub {
-  font-size: 15px;
-  color: var(--soft);
+.gate-title span {
+  background: linear-gradient(135deg, #FFF 20%, var(--terracotta-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gate-subtitle {
+  color: var(--text-muted);
+  font-size: 16px;
   text-align: center;
-  max-width: 650px;
-  line-height: 1.6;
-  margin-bottom: 34px;
+  max-width: 640px;
+  margin-bottom: 40px;
 }
+
 .names-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
   width: 100%;
-  max-width: 960px;
+  max-width: 1100px;
 }
 .name-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 22px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 22px;
   cursor: pointer;
-  text-align: left;
-  transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+.name-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--terracotta), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
 }
 .name-card:hover {
   transform: translateY(-4px);
-  border-color: var(--accent);
-  box-shadow: var(--shadow-accent);
+  border-color: var(--border-hover);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-glow);
 }
+.name-card:hover::before { opacity: 1; }
+
+.nc-top { display: flex; align-items: center; justify-content: space-between; }
 .nc-avatar {
   width: 44px; height: 44px; border-radius: 12px;
-  background: var(--accent-glow); border: 1px solid rgba(217,119,87,0.3);
+  background: var(--terracotta-glow); border: 1px solid rgba(217,119,87,0.3);
+  color: var(--terracotta-light); font-family: var(--font-display);
+  font-size: 18px; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700;
-  color: var(--accent-soft); margin-bottom: 14px;
 }
-.nc-name { font-size: 16px; font-weight: 700; margin-bottom: 3px; }
-.nc-role { font-size: 13px; color: var(--soft); margin-bottom: 10px; }
 .nc-pole {
-  display: inline-block; font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; font-weight: 600; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 6px; background: rgba(255,255,255,0.05); color: var(--muted);
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  padding: 4px 8px; border-radius: 6px; background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
 }
+.nc-name { font-size: 17px; font-weight: 700; }
+.nc-role { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
 
-/* ══ APP HEADER & SHELL ══ */
-#app { display: none; min-height: 100vh; flex-direction: column; }
-.app-header {
-  border-bottom: 1px solid var(--border);
-  background: rgba(9,14,23,0.85);
-  backdrop-filter: blur(14px);
+/* ══ APP HEADER & WORKSPACE ══ */
+#appView { display: none; min-height: 100vh; flex-direction: column; }
+.navbar {
   position: sticky; top: 0; z-index: 100;
+  background: rgba(7, 11, 18, 0.88);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-subtle);
 }
-.hdr-top {
-  max-width: 1240px; margin: 0 auto; padding: 14px 24px;
+.navbar-inner {
+  max-width: 1280px; margin: 0 auto; padding: 14px 24px;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
 }
-.hdr-user { display: flex; align-items: center; gap: 12px; }
-.hdr-avatar {
-  width: 38px; height: 38px; border-radius: 10px;
-  background: var(--accent); color: var(--navy);
-  font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px;
+.nav-profile { display: flex; align-items: center; gap: 14px; }
+.nav-avatar {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--terracotta); color: #000;
+  font-family: var(--font-display); font-size: 16px; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
 }
-.hdr-info { display: flex; flex-direction: column; }
-.hdr-name { font-size: 14.5px; font-weight: 700; }
-.hdr-role { font-size: 12px; color: var(--muted); }
-.btn-switch {
-  background: rgba(255,255,255,0.06); border: 1px solid var(--border);
-  color: var(--soft); padding: 6px 12px; border-radius: 8px; font-size: 12px;
-  cursor: pointer; transition: all .2s;
-}
-.btn-switch:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+.nav-meta { display: flex; flex-direction: column; }
+.nav-user-name { font-size: 15px; font-weight: 700; }
+.nav-user-role { font-size: 12px; color: var(--text-muted); }
 
-.hdr-links { display: flex; align-items: center; gap: 10px; }
-.hdr-pill {
+.btn-switch-user {
   display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-  color: var(--soft); padding: 6px 13px; border-radius: 999px;
-  font-size: 12px; font-weight: 500; transition: all .25s var(--ease);
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle);
+  color: var(--text-muted); padding: 6px 12px; border-radius: var(--radius-sm);
+  font-size: 12px; font-weight: 500; cursor: pointer; transition: all var(--transition-fast);
 }
-.hdr-pill:hover {
-  background: var(--accent-glow); border-color: var(--accent);
-  color: var(--accent-soft); transform: translateY(-1px);
+.btn-switch-user:hover { background: rgba(255,255,255,0.12); color: var(--text-main); }
+
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle);
+  color: var(--text-main); padding: 8px 14px; border-radius: var(--radius-full);
+  font-size: 13px; font-weight: 600; text-decoration: none;
+  transition: all var(--transition-fast);
 }
-.hdr-pill.primary {
-  background: var(--accent); border-color: var(--accent);
-  color: var(--navy); font-weight: 600;
+.nav-btn:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
+.nav-btn.primary {
+  background: var(--terracotta); border-color: var(--terracotta);
+  color: #05080E; font-weight: 700;
 }
-.hdr-pill.primary:hover { background: var(--accent-soft); color: var(--navy); }
+.nav-btn.primary:hover { background: var(--terracotta-light); }
 
 /* ══ TABS NAVIGATION ══ */
-.tabs-nav {
-  max-width: 1240px; margin: 0 auto; padding: 0 24px;
-  display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none;
+.tabs-scroller {
+  background: rgba(13, 21, 36, 0.7);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto; scrollbar-width: none;
 }
-.tabs-nav::-webkit-scrollbar { display: none; }
-.tab-btn {
-  background: transparent; border: none; color: var(--muted);
-  font-family: 'Inter Tight', system-ui, sans-serif; font-size: 13px; font-weight: 600;
+.tabs-scroller::-webkit-scrollbar { display: none; }
+.tabs-list {
+  max-width: 1280px; margin: 0 auto; padding: 0 24px;
+  display: flex; gap: 4px;
+}
+.tab-item {
+  background: transparent; border: none; color: var(--text-muted);
+  font-family: var(--font-body); font-size: 13.5px; font-weight: 600;
   padding: 14px 16px; cursor: pointer; white-space: nowrap;
-  border-bottom: 2px solid transparent; transition: all .2s;
+  border-bottom: 2px solid transparent;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all var(--transition-fast);
 }
-.tab-btn:hover { color: var(--soft); }
-.tab-btn.active { color: var(--accent-soft); border-bottom-color: var(--accent); }
+.tab-item:hover { color: var(--text-main); }
+.tab-item.active { color: var(--terracotta-light); border-bottom-color: var(--terracotta); }
 
-/* ══ CONTENT AREA ══ */
-.app-body { flex: 1; max-width: 1240px; width: 100%; margin: 0 auto; padding: 34px 24px 80px; }
-
-.sec-head { margin-bottom: 26px; }
-.sec-kicker {
-  font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-soft);
+/* ══ MAIN BODY ══ */
+.main-content {
+  flex: 1; max-width: 1280px; width: 100%; margin: 0 auto;
+  padding: 36px 24px 80px;
+}
+.section-header { margin-bottom: 30px; }
+.section-tag {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1.5px; color: var(--terracotta);
   margin-bottom: 6px;
 }
-.sec-title {
-  font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700;
-  margin-bottom: 8px;
+.section-title {
+  font-family: var(--font-display); font-size: 28px; font-weight: 700;
+  letter-spacing: -0.5px; margin-bottom: 8px;
 }
-.sec-desc { color: var(--soft); font-size: 14px; max-width: 760px; }
+.section-desc { color: var(--text-muted); font-size: 14.5px; max-width: 780px; }
 
-/* ══ CARDS & COMPONENTS ══ */
+/* ══ BENTO & CARDS ══ */
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; }
-.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
-.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
 
-.card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 24px;
-  transition: transform .3s var(--ease), border-color .3s var(--ease);
+.bento-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  transition: all var(--transition-smooth);
 }
-.card:hover { border-color: rgba(255,255,255,0.18); }
-.card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-.card p { font-size: 13.5px; color: var(--soft); line-height: 1.6; }
+.bento-card:hover { border-color: rgba(255,255,255,0.16); background: var(--bg-card); }
 
-.callout {
+.callout-box {
   border-radius: var(--radius-sm); padding: 16px 20px;
-  font-size: 13.5px; line-height: 1.6; margin-bottom: 20px;
-  border-left: 4px solid;
+  font-size: 13.5px; line-height: 1.6; margin-bottom: 24px;
+  border-left: 4px solid; display: flex; gap: 14px; align-items: flex-start;
 }
-.callout-gold { background: rgba(251,191,36,0.08); border-color: var(--gold); color: #FDE68A; }
-.callout-teal { background: rgba(56,189,248,0.08); border-color: var(--teal); color: #BAE6FD; }
-.callout-red { background: rgba(248,113,113,0.08); border-color: var(--red); color: #FECACA; }
-.callout-green { background: rgba(52,211,153,0.08); border-color: var(--green); color: #A7F3D0; }
-.callout-purple { background: rgba(167,139,250,0.08); border-color: var(--purple); color: #DDD6FE; }
+.callout-teal { background: var(--teal-glow); border-color: var(--teal); color: #BAE6FD; }
+.callout-amber { background: var(--amber-glow); border-color: var(--amber); color: #FDE68A; }
+.callout-rose { background: rgba(251,113,133,0.15); border-color: var(--rose); color: #FECDD3; }
 
+/* ══ PROMPT CARD & COPY ══ */
 .prompt-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 22px; margin-bottom: 18px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 22px; margin-bottom: 18px;
+  transition: all var(--transition-smooth);
 }
+.prompt-card:hover { border-color: rgba(255,255,255,0.16); }
 .prompt-header {
   display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 12px; gap: 12px;
+  gap: 12px; margin-bottom: 10px;
 }
-.prompt-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--accent-glow); color: var(--accent-soft);
-  font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
-  padding: 4px 10px; border-radius: 6px;
+.prompt-badge {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+  padding: 4px 10px; border-radius: 6px; background: var(--terracotta-glow);
+  color: var(--terracotta-light);
 }
-.copy-btn {
-  background: rgba(255,255,255,0.08); border: 1px solid var(--border);
-  color: var(--white); padding: 7px 14px; border-radius: 8px;
-  font-size: 12px; font-weight: 600; cursor: pointer;
-  display: inline-flex; align-items: center; gap: 6px;
-  transition: all .2s var(--ease);
+.btn-copy {
+  background: rgba(255,255,255,0.06); border: 1px solid var(--border-subtle);
+  color: var(--text-main); padding: 7px 14px; border-radius: var(--radius-sm);
+  font-size: 12.5px; font-weight: 600; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 7px;
+  transition: all var(--transition-fast);
 }
-.copy-btn:hover { background: var(--accent); color: var(--navy); border-color: var(--accent); }
-.copy-btn.copied { background: var(--green); color: var(--navy); border-color: var(--green); }
+.btn-copy:hover { background: var(--terracotta); color: #05080E; border-color: var(--terracotta); }
+.btn-copy.copied { background: var(--mint); color: #05080E; border-color: var(--mint); }
 
-.prompt-box {
-  background: #080D16; border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 10px; padding: 14px; position: relative;
+.prompt-textarea-wrap {
+  background: #06090F; border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px; padding: 14px; margin-top: 10px;
 }
-.prompt-text {
-  font-family: 'JetBrains Mono', monospace; font-size: 12px;
-  color: #E2E8F0; line-height: 1.65; white-space: pre-wrap; word-break: break-word;
-  max-height: 280px; overflow-y: auto; scrollbar-width: thin;
-  background: transparent; border: none; width: 100%; resize: vertical;
+.prompt-textarea {
+  width: 100%; background: transparent; border: none; outline: none;
+  font-family: var(--font-mono); font-size: 12.5px; color: #E2E8F0;
+  line-height: 1.65; white-space: pre-wrap; word-break: break-word;
+  resize: vertical; min-height: 140px; max-height: 320px;
 }
 
-/* ══ BUILDER ══ */
-.builder-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-}
-@media(max-width:850px){ .builder-grid { grid-template-columns: 1fr; } }
-
+/* ══ BUILDER FORM ══ */
 .form-group { margin-bottom: 16px; }
 .form-group label {
-  display: block; font-size: 12.5px; font-weight: 600; color: var(--soft);
+  display: block; font-size: 12.5px; font-weight: 600; color: var(--text-muted);
   margin-bottom: 6px;
 }
-.form-control {
-  width: 100%; background: #080D16; border: 1px solid var(--border);
-  border-radius: 10px; padding: 10px 14px; color: var(--white);
-  font-family: 'Inter Tight', sans-serif; font-size: 13.5px;
+.form-input, .form-select {
+  width: 100%; background: #06090F; border: 1px solid var(--border-subtle);
+  border-radius: 10px; padding: 10px 14px; color: var(--text-main);
+  font-family: var(--font-body); font-size: 13.5px; outline: none;
+  transition: border-color var(--transition-fast);
 }
-.form-control:focus { outline: none; border-color: var(--accent); }
-select.form-control { cursor: pointer; }
+.form-input:focus, .form-select:focus { border-color: var(--terracotta); }
 
-/* ══ RESOURCE & TOOL CARDS ══ */
-.res-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  transition: all .25s var(--ease);
+/* ══ TOAST FEEDBACK ══ */
+#toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+  background: #10B981; color: #000; font-weight: 700; font-size: 13.5px;
+  padding: 12px 20px; border-radius: var(--radius-sm);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  display: flex; align-items: center; gap: 8px;
+  opacity: 0; transform: translateY(12px); pointer-events: none;
+  transition: all 220ms ease-out;
 }
-.res-card:hover {
-  transform: translateY(-3px); border-color: var(--accent);
-  box-shadow: var(--shadow-accent);
-}
-.res-tag {
-  font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
-  color: var(--accent-soft); font-weight: 600; text-transform: uppercase; margin-bottom: 6px;
-}
-.res-title {
-  font-size: 16px; font-weight: 700; margin-bottom: 6px;
-}
-.res-desc {
-  font-size: 13px; color: var(--soft); line-height: 1.55; margin-bottom: 16px;
-}
-.res-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  color: var(--accent-soft); font-size: 13px; font-weight: 600;
-  text-decoration: underline;
-}
-.res-link:hover { color: var(--white); }
-
-.tool-item {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  transition: all .25s var(--ease);
-}
-.tool-item:hover { border-color: var(--teal); transform: translateY(-3px); }
-.tool-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-.tool-icon { font-size: 24px; }
-.tool-name { font-size: 16px; font-weight: 700; }
-.tool-desc { font-size: 13px; color: var(--soft); line-height: 1.55; margin-bottom: 14px; }
-.tool-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  background: rgba(255,255,255,0.06); border: 1px solid var(--border);
-  color: var(--white); padding: 8px 14px; border-radius: 8px;
-  font-size: 12.5px; font-weight: 600; transition: all .2s;
-}
-.tool-btn:hover { background: var(--teal); color: var(--navy); border-color: var(--teal); }
+#toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
 </style>
 </head>
 <body>
 
-<!-- ══ GATE SCREEN ══ -->
-<div id="gate">
-  <div class="gate-kicker"><span class="dot"></span> Session Gestuel'Santé · 26-27 Août 2026</div>
-  <h1 class="gate-title">Votre Kit d'Accompagnement <span>Claude Pro</span></h1>
-  <p class="gate-sub">Sélectionnez votre profil pour charger instantanément votre espace de travail, vos prompts métiers, vos compétences packagées et vos instructions personnalisées.</p>
+<div id="toast">
+  <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+  <span>Copié dans le presse-papier !</span>
+</div>
+
+<!-- ══ 1. PORTAIL NOMINATIF (GATE) ══ -->
+<div id="gateView">
+  <div class="gate-badge"><span class="gate-badge-dot"></span> Session Gestuel'Santé · 26 & 27 Août 2026</div>
+  <h1 class="gate-title">Kit d'Accompagnement <span>Claude Pro</span></h1>
+  <p class="gate-subtitle">Choisissez votre profil pour initialiser vos prompts métiers sur-mesure, vos projets d'équipe et vos compétences prêtes à l'emploi.</p>
   
   <div class="names-grid" id="gateGrid"></div>
 </div>
 
-<!-- ══ MAIN APP ══ -->
-<div id="app">
-  <header class="app-header">
-    <div class="hdr-top">
-      <div class="hdr-user">
-        <div class="hdr-avatar" id="hdrAvatar">C</div>
-        <div class="hdr-info">
-          <div class="hdr-name" id="hdrName">Camille</div>
-          <div class="hdr-role" id="hdrRole">Direction / Coordination</div>
+<!-- ══ 2. ESPACE DE TRAVAIL (APP) ══ -->
+<div id="appView">
+  <header class="navbar">
+    <div class="navbar-inner">
+      <div class="nav-profile">
+        <div class="nav-avatar" id="navAvatar">C</div>
+        <div class="nav-meta">
+          <div class="nav-user-name" id="navName">Camille</div>
+          <div class="nav-user-role" id="navRole">Direction / Coordination</div>
         </div>
-        <button class="btn-switch" onclick="exitApp()">← Changer de profil</button>
+        <button class="btn-switch-user" onclick="switchProfile()">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Changer de profil
+        </button>
       </div>
-      <div class="hdr-links">
-        <a href="https://claude.ai" target="_blank" class="hdr-pill primary">↗ Ouvrir Claude.ai</a>
-        <a href="https://claude.ai/settings/capabilities" target="_blank" class="hdr-pill">⚙️ Réglages Mémoire</a>
-        <a href="https://docs.anthropic.com/en/prompt-library/library" target="_blank" class="hdr-pill">📚 Bibliothèque Prompts</a>
+
+      <div class="nav-actions">
+        <a href="https://claude.ai" target="_blank" rel="noopener" class="nav-btn primary">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          Ouvrir Claude.ai
+        </a>
+        <a href="https://claude.ai/settings/capabilities" target="_blank" rel="noopener" class="nav-btn">
+          <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Réglages Mémoire
+        </a>
       </div>
     </div>
-    <div class="tabs-nav" id="tabsNav"></div>
+
+    <nav class="tabs-scroller">
+      <div class="tabs-list" id="tabsList"></div>
+    </nav>
   </header>
 
-  <main class="app-body">
-    <div id="tabContent"></div>
-  </main>
+  <main class="main-content" id="mainContent"></main>
 </div>
 
 <script>
@@ -362,24 +424,23 @@ const PEOPLE = [
   { id: "stephane", first: "Stéphane", last: "Formateur", role: "Kinésithérapeute Formateur TMS", pole: "Formateurs" }
 ];
 
-let currentPerson = null;
+let currentUser = null;
 
 const TABS = [
   {
     id: "espace",
     label: "🎯 1. Mon Espace Métier",
     render: () => {
-      const isKine = currentPerson.pole === "Formateurs";
-      const isMkt = currentPerson.pole === "Marketing";
-      const isAdmin = currentPerson.pole === "Admin";
+      const isKine = currentUser.pole === "Formateurs";
+      const isMkt = currentUser.pole === "Marketing";
       
       let prompts = [];
       if (isKine) {
         prompts = [
           {
             title: "🎙️ Dictée Vocale → Compte-Rendu d'Intervention Normé",
-            desc: "Collez votre transcription vocale brute enregistrée en sortie d'atelier. Claude structure un rapport professionnel en 4 parties.",
-            text: `Tu es mon assistant kinésithérapeute ergonome chez Gestuel'Santé. 
+            desc: "Collez la transcription brute de votre enregistrement smartphone en sortie d'atelier.",
+            text: `Tu es mon assistant kinésithérapeute ergonome chez Gestuel'Santé.
 
 Voici ma dictée vocale brute enregistrée après mon intervention en entreprise :
 """
@@ -395,26 +456,26 @@ Rédige un compte-rendu d'intervention structuré :
 Adopte un ton professionnel, clair, positif et accessible aux non-médecins.`
           },
           {
-            title: "🏃 Fiche Pratique : Échauffement 5 Min par Poste (Artifact)",
-            desc: "Créez une fiche d'échauffement sur-mesure pour un poste spécifique (mise en carton, cariste, écran).",
+            title: "🏃 Fiche Pratique : Échauffement 5 Min par Poste (Claude Artifact)",
+            desc: "Générez un tableau de bord visuel interactif prêt à imprimer pour afficher en atelier.",
             text: `Tu es ergonome expert en prévention des TMS chez Gestuel'Santé.
 
 Conçois une routine d'échauffement et de réveil musculaire au poste de travail pour le métier suivant :
 Métier cible : [Ex: Préparateur de commandes / Cariste / Travail sur écran]
 Temps alloué : 5 minutes
 
-Structure ta fiche en 5 exercices chronométrés dans un Artifact propre et imprimable :
-- Exercice 1 : Réveil articulaire (1 min)
+Génère dans une fenêtre Artifact une fiche structurée et épurée :
+- Exercice 1 : Réveil articulaire général (1 min)
 - Exercice 2 : Mobilisation rachis lombaire / bassin (1 min)
 - Exercice 3 : Déverrouillage épaules & cervicales (1 min)
-- Exercice 4 : Étirements dynamiques poignets / doigts (1 min)
-- Exercice 5 : Respiration & posture d'ancrage (1 min)
+- Exercice 4 : Étirements dynamiques poignets / avant-bras (1 min)
+- Exercice 5 : Respiration & ancrage postural (1 min)
 
-Pour chaque exercice : donne le nom, la consigne pas à pas en 2 phrases, le schéma mental de la posture et le point de vigilance sécurité.`
+Pour chaque exercice : nom, consigne en 2 phrases, posture clé et point de vigilance sécurité.`
           },
           {
             title: "🔬 Synthèse Scientifique Express (PubMed / INRS)",
-            desc: "Obtenez un argumentaire scientifique et sourcé pour convaincre un client sur un facteur de risque précis.",
+            desc: "Obtenez un argumentaire scientifique sourcé pour convaincre un DRH sur un facteur de risque précis.",
             text: `Tu es consultant en veille scientifique santé au travail pour Gestuel'Santé.
 
 Thématique : [Ex: Efficacité des pauses actives sur la prévention des lombalgies en logistique]
@@ -426,31 +487,20 @@ Fournis-moi une synthèse claire en 3 points :
           },
           {
             title: "✉️ Email de Suivi Post-Formation au Responsable HSE",
-            desc: "Un email chaleureux et engageant pour transmettre les supports et consolider l'ancrage.",
+            desc: "Email chaleureux pour consolider l'ancrage et transmettre les fiches d'exercices.",
             text: `Rédige un email de remerciement et de suivi post-formation suite à mon intervention chez le client [Nom du client].
 
 Points abordés durant la session : [Ex: 12 salariés formés, atelier manutention manuelle, mise en place de la routine 5 min].
 Prochaine étape : Point de suivi à J+30.
 
 Ton : bienveillant, valorisant, engageant et orienté passage à l'action.`
-          },
-          {
-            title: "📋 Quiz d'Évaluation des Connaissances Début / Fin de Session",
-            desc: "Générez un QCM interactif de 5 questions pour mesurer la montée en compétences des stagiaires.",
-            text: `Conçois un QCM de 5 questions à choix multiples pour évaluer les connaissances des stagiaires sur les gestes et postures :
-Thématique : [Ex: Port de charges lourdes et protection du rachis lombaire].
-
-Pour chaque question :
-- La question concrète basée sur une situation réelle
-- 3 options (A, B, C) avec 1 seule réponse biomécaniquement juste
-- L'explication détaillée du bon geste après validation.`
           }
         ];
       } else if (isMkt) {
         prompts = [
           {
             title: "📱 Post LinkedIn : Le Geste Juste de la Semaine",
-            desc: "Transformez une situation réelle de terrain en post LinkedIn éducatif et percutant.",
+            desc: "Convertissez une observation terrain de vos kinés en publication éducative captivante.",
             text: `Tu es le copywriter LinkedIn de Gestuel'Santé. Rédige un post LinkedIn engageant à partir de cette anecdote terrain :
 
 Situation : [Ex: Un préparateur de commande qui portait 3 tonnes par jour avec le dos rond et comment on a corrigé l'axe bassin-pieds].
@@ -465,8 +515,8 @@ Structure du post :
 Ton : humain, pédagogique, zéro mot marketing creux, phrases courtes.`
           },
           {
-            title: "📰 Newsletter RH / HSE : Baromètre TMS & Prévention",
-            desc: "Rédigez l'édition mensuelle de votre lettre d'information pour les décideurs RH.",
+            title: "📰 Newsletter RH & Prévention TMS",
+            desc: "Édition mensuelle de la newsletter pour les décideurs RH et QVT.",
             text: `Rédige une newsletter mensuelle de 300 mots pour Gestuel'Santé destinée aux DRH et Responsables QVT.
 
 Sujet du mois : [Ex: Le coût caché des lombalgies en entreprise et comment agir dès la rentrée].
@@ -477,36 +527,13 @@ Structure :
 - Les 3 piliers de prévention à mettre en place
 - Témoignage / Cas d'usage terrain anonymisé
 - Appel à l'action clair : réserver un audit ergonomique Gestuel'Santé.`
-          },
-          {
-            title: "🎯 Fiche Argumentaire Commerciale par Métier",
-            desc: "Générez un document d'une page pour convaincre un prospect dans un secteur précis.",
-            text: `Tu es responsable du développement chez Gestuel'Santé.
-
-Rédige une fiche d'argumentaire commercial one-page pour prospecter les entreprises du secteur : [Ex: Industrie agroalimentaire / BTP / Centres d'appels].
-
-Inclus :
-1. Les 3 pathologies TMS dominantes dans ce secteur.
-2. Les impacts financiers directs (coût moyen d'un arrêt de travail, taux AT/MP).
-3. La réponse pédagogique concrète de Gestuel'Santé (formation terrain par des kinés).
-4. Les bénéfices mesurables sous 90 jours.`
-          },
-          {
-            title: "✍️ Réécriture de Témoignage Client en Étude de Cas",
-            desc: "Transformez des retours d'évaluation en cas client inspirant.",
-            text: `À partir des retours clients bruts suivants :
-"""
-[Collez les retours de fin de formation / citations]
-"""
-
-Rédige une mini étude de cas client (format avant / après) mettant en valeur l'expertise Gestuel'Santé et les résultats obtenus par les salariés.`
           }
         ];
       } else {
         prompts = [
           {
-            title: "📑 Relance Prise en Charge OPCO / AKTO",
-            desc: "Rédigez une relance cordiale mais précise pour débloquer un accord de subrogation.",
+            title: "📑 Relance Accord Prise en Charge OPCO / AKTO",
+            desc: "Débloquez rapidement un accord de subrogation avant la tenue de la session.",
             text: `Tu es responsable administratif chez Gestuel'Santé. Rédige un email de relance pour l'OPCO [Ex: AKTO / OPCO EP] concernant une demande de prise en charge en subrogation.
 
 Informations du dossier :
@@ -518,28 +545,7 @@ Informations du dossier :
 Demande avec courtoisie et rigueur l'état d'avancement de l'accord avant la tenue de la formation.`
           },
           {
-            title: "📋 Synthèse de Cahier des Charges pour Appel d'Offres",
-            desc: "Analysez un document de 20 pages et extrayez les exigences clés en 30 secondes.",
-            text: `Analyse le document de consultation / cahier des charges suivant :
-"""
-[Collez l'extrait ou le texte du document]
-"""
-
-Synthétise en un tableau clair :
-1. Objectifs pédagogiques exigés par le client
-2. Nombre de stagiaires et volumétrie d'heures
-3. Modalités d'évaluation et livrables obligatoires
-4. Critères de conformité Qualiopi à respecter`
-          },
-          {
-            title: "✉️ Email de Transmission des Conventions Signées",
-            desc: "Email type d'envoi des conventions et convocations avec rappel des pièces requises.",
-            text: `Rédige un email type d'envoi des conventions de formation et convocations pour l'entreprise [Nom de l'entreprise].
-
-Rappelle les consignes d'émargement, les horaires de la session, et la liste des pièces administratives à nous retourner avant le premier jour.`
-          },
-          {
-            title: "📊 Bilan d'Évaluation de Fin de Session (Qualiopi)",
+            title: "📊 Bilan d'Évaluation Qualiopi de Fin de Session",
             desc: "Analysez les notes de satisfaction pour générer le bilan statistique de formation.",
             text: `Voici les notes brutes des évaluations stagiaires de la session du [Date] chez [Client] :
 """
@@ -556,26 +562,30 @@ Produis le bilan d'évaluation Qualiopi :
       }
 
       return `
-        <div class="sec-head">
-          <div class="sec-kicker">Espace Nominatif · ${currentPerson.first} ${currentPerson.last}</div>
-          <h2 class="sec-title">${currentPerson.role}</h2>
-          <p class="sec-desc">Vos prompts de production quotidienne. Cliquez sur <strong>📋 Copier</strong> et collez directement dans votre conversation Claude.ai.</p>
+        <div class="section-header">
+          <div class="section-tag">Espace Nominatif · ${currentUser.first} ${currentUser.last}</div>
+          <h2 class="section-title">${currentUser.role}</h2>
+          <p class="section-desc">Vos modèles de prompts prêts pour votre pratique quotidienne. Cliquez sur <strong>Copier</strong> et collez directement dans votre conversation Claude.ai.</p>
         </div>
 
-        <div class="callout callout-teal">
-          <strong>💡 Comment utiliser ces prompts :</strong> Ouvrez Claude.ai, collez le prompt, remplacez les parties entre crochets <code>[Exemple]</code> par vos données réelles, puis appuyez sur Entrée.
+        <div class="callout-box callout-teal">
+          <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <div><strong>Conseil de Prompting :</strong> Remplacez les éléments entre crochets <code>[Exemple]</code> par vos données réelles pour obtenir un livrable parfait en 10 secondes.</div>
         </div>
 
         ${prompts.map((p, idx) => `
           <div class="prompt-card">
             <div class="prompt-header">
-              <span class="prompt-tag">Prompt ${idx+1} · ${currentPerson.pole}</span>
-              <button class="copy-btn" onclick="copyPromptText(this)">📋 Copier le Prompt</button>
+              <span class="prompt-badge">Modèle ${idx+1} · ${currentUser.pole}</span>
+              <button class="btn-copy" onclick="copySnippet(this)">
+                <svg class="svg-icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Copier le prompt
+              </button>
             </div>
-            <h4 style="font-size:16px; margin-bottom:6px;">${p.title}</h4>
-            <p style="font-size:13px; color:var(--soft); margin-bottom:12px;">${p.desc}</p>
-            <div class="prompt-box">
-              <textarea class="prompt-text" readonly>${p.text}</textarea>
+            <h3 style="font-size:16.5px; font-weight:700; margin-bottom:4px;">${p.title}</h3>
+            <p style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">${p.desc}</p>
+            <div class="prompt-textarea-wrap">
+              <textarea class="prompt-textarea" readonly>${p.text}</textarea>
             </div>
           </div>
         `).join('')}
@@ -584,31 +594,27 @@ Produis le bilan d'évaluation Qualiopi :
   },
   {
     id: "builder",
-    label: "⚙️ 2. Générateur d'Instructions",
+    label: "⚙️ 2. Instructions Personnalisées",
     render: () => {
       return `
-        <div class="sec-head">
-          <div class="sec-kicker">Réglages Claude Pro (Settings > Capabilities)</div>
-          <h2 class="sec-title">Vos Instructions Personnalisées à la Carte</h2>
-          <p class="sec-desc">Configurez votre posture par défaut. Une fois collé dans vos réglages Claude.ai, Claude se comportera toujours selon votre métier.</p>
+        <div class="section-header">
+          <div class="section-tag">Paramétrage Claude Pro (Settings > Capabilities)</div>
+          <h2 class="section-title">Générateur d'Instructions Personnalisées</h2>
+          <p class="section-desc">Collez ce bloc une seule fois dans vos réglages Claude.ai pour qu'il connaisse votre posture métier par défaut.</p>
         </div>
 
-        <div class="callout callout-gold">
-          <strong>📍 Où coller ce bloc :</strong> Dans Claude.ai → Cliquez sur votre prénom (en bas à gauche) → <strong>Settings</strong> → <strong>Capabilities</strong> → <strong>Custom Instructions</strong>.
-        </div>
-
-        <div class="builder-grid">
-          <div class="card">
-            <h4>🛠️ Personnalisez votre profil</h4>
+        <div class="grid-2">
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:16px;">🛠️ Paramétrer votre Profil</h3>
             
             <div class="form-group">
-              <label>Votre rôle & identité :</label>
-              <input type="text" id="bRole" class="form-control" oninput="updateCustomInstructions()">
+              <label>Identité & Rôle :</label>
+              <input type="text" id="cfgRole" class="form-input" oninput="syncCustomInstructions()">
             </div>
 
             <div class="form-group">
-              <label>Ton & Style de communication :</label>
-              <select id="bStyle" class="form-control" onchange="updateCustomInstructions()">
+              <label>Posture & Tonalité :</label>
+              <select id="cfgStyle" class="form-select" onchange="syncCustomInstructions()">
                 <option value="direct, bienveillant, orienté terrain et sans jargon médical">Direct, bienveillant & terrain (Formateur Kiné)</option>
                 <option value="chaleureux, percutant, valorisant le geste juste et le ROI santé">Chaleureux & percutant (Marketing & Communication)</option>
                 <option value="rigoureux, concis, professionnel et conforme OPCO/AKTO">Rigoureux & conforme OPCO (Gestion Admin)</option>
@@ -617,29 +623,35 @@ Produis le bilan d'évaluation Qualiopi :
             </div>
 
             <div class="form-group">
-              <label>Vos missions principales :</label>
-              <input type="text" id="bTasks" class="form-control" oninput="updateCustomInstructions()">
+              <label>Missions prioritaires :</label>
+              <input type="text" id="cfgTasks" class="form-input" oninput="syncCustomInstructions()">
             </div>
 
             <div class="form-group">
               <label>Ce que Claude doit absolument éviter :</label>
-              <input type="text" id="bAvoid" class="form-control" oninput="updateCustomInstructions()">
+              <input type="text" id="cfgAvoid" class="form-input" oninput="syncCustomInstructions()">
             </div>
           </div>
 
-          <div class="card" style="display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="bento-card" style="display:flex; flex-direction:column; justify-content:space-between;">
             <div>
               <div class="prompt-header">
-                <h4>📄 Vos Instructions Prêtes</h4>
-                <button class="copy-btn" onclick="copyPromptText(this)">📋 Copier les Instructions</button>
+                <h3 style="font-size:17px;">📄 Vos Instructions Prêtes</h3>
+                <button class="btn-copy" onclick="copySnippet(this)">
+                  <svg class="svg-icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  Copier le bloc
+                </button>
               </div>
-              <p style="font-size:12.5px; color:var(--soft); margin-bottom:10px;">Ce bloc est généré sur-mesure pour vous :</p>
-              <div class="prompt-box">
-                <textarea id="bOutput" class="prompt-text" style="min-height:220px;" readonly></textarea>
+              <div class="prompt-textarea-wrap" style="margin-top:14px;">
+                <textarea id="cfgOutput" class="prompt-textarea" style="min-height:220px;" readonly></textarea>
               </div>
             </div>
-            <div style="margin-top:16px;">
-              <a href="https://claude.ai/settings/capabilities" target="_blank" class="hdr-pill primary" style="width:100%; justify-content:center; padding:10px;">⚙️ Ouvrir les Réglages Claude.ai</a>
+
+            <div style="margin-top:20px;">
+              <a href="https://claude.ai/settings/capabilities" target="_blank" rel="noopener" class="nav-btn primary" style="width:100%; justify-content:center; padding:12px;">
+                <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                Ouvrir les Réglages Claude.ai
+              </a>
             </div>
           </div>
         </div>
@@ -648,35 +660,36 @@ Produis le bilan d'évaluation Qualiopi :
   },
   {
     id: "projets",
-    label: "📁 3. Les Projets Claude",
+    label: "📁 3. Projets Claude",
     render: () => {
       return `
-        <div class="sec-head">
-          <div class="sec-kicker">Organisation d'Équipe & Mémoire Partagée</div>
-          <h2 class="sec-title">Les 4 Projets Officiels Gestuel'Santé</h2>
-          <p class="sec-desc">Dans Claude Pro, un <strong>Projet</strong> permet de stocker des documents de référence (PDF, grilles tarifaires, conventions) et de fixer des consignes permanentes.</p>
+        <div class="section-header">
+          <div class="section-tag">Architecture Documentaire & Mémoire Partagée</div>
+          <h2 class="section-title">Les 4 Espaces Projets Gestuel'Santé</h2>
+          <p class="section-desc">Dans Claude Pro, créez un <strong>Projet</strong> par pôle pour y déposer vos PDF de référence et consigner vos règles permanentes.</p>
         </div>
 
-        <div class="callout callout-teal">
-          <strong>⚡ Règle d'or « Chat Reset » :</strong> Ne gardez pas une conversation ouverte pendant 3 semaines. <strong>1 tâche = 1 nouveau Chat</strong> dans le bon Projet pour garder Claude ultra-rapide et pertinent.
+        <div class="callout-box callout-amber">
+          <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <div><strong>Règle d'or « Chat Reset » :</strong> Ne conservez pas un chat ouvert sur plusieurs semaines. <strong>1 tâche = 1 nouveau Chat</strong> dans le Projet dédié pour conserver une vitesse et une pertinence maximales.</div>
         </div>
 
         <div class="grid-2">
-          <div class="card">
-            <h4>📁 Projet 1 : Formateurs & Rapports d'Intervention</h4>
-            <p style="margin-bottom:12px;"><strong>Pour qui :</strong> Tous les kinésithérapeutes formateurs.<br><strong>Fichiers à déposer :</strong> Grille d'observation biomécanique, modèle type de rapport d'intervention, glossaire des gestes justes.<br><strong>Consignes du projet :</strong> « Tu es l'assistant de rédaction des kinésithérapeutes Gestuel'Santé. Tu transformes les dictées vocales en comptes-rendus normés. »</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">📁 Projet 1 : Formateurs Kinés & Rapports</h3>
+            <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;"><strong>Fichiers :</strong> Grille d'observation biomécanique, modèle de rapport d'intervention, glossaire des gestes justes.<br><strong>Consigne :</strong> « Tu transformes les dictées vocales des kinés en comptes-rendus normés Gestuel'Santé. »</p>
           </div>
-          <div class="card">
-            <h4>📁 Projet 2 : Veille Scientifique & R&D Santé</h4>
-            <p style="margin-bottom:12px;"><strong>Pour qui :</strong> Direction & Formateurs référents.<br><strong>Fichiers à déposer :</strong> Rapports INRS sur les TMS, publications PubMed majeures, études ergonomiques sectorielles.<br><strong>Consignes du projet :</strong> « Tu es analyste scientifique. Tu confrontes toute question aux dernières données probantes et consensus médicaux. »</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">📁 Projet 2 : Veille Scientifique & R&D TMS</h3>
+            <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;"><strong>Fichiers :</strong> Rapports INRS sur les TMS, publications PubMed majeures, études biomécaniques.<br><strong>Consigne :</strong> « Tu confrontes toute interrogation aux données probantes et consensus médicaux actuels. »</p>
           </div>
-          <div class="card">
-            <h4>📁 Projet 3 : Communication & LinkedIn</h4>
-            <p style="margin-bottom:12px;"><strong>Pour qui :</strong> Pôle Marketing & Direction.<br><strong>Fichiers à déposer :</strong> Ligne éditoriale Gestuel'Santé, charte de ton, exemples de posts viraux, témoignages clients.<br><strong>Consignes du projet :</strong> « Tu es le copywriter de Gestuel'Santé. Tu rédiges avec un ton direct, humain, bienveillant et sans jargon creux. »</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">📁 Projet 3 : Communication & LinkedIn</h3>
+            <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;"><strong>Fichiers :</strong> Charte éditoriale Gestuel'Santé, exemples de posts viraux, témoignages clients.<br><strong>Consigne :</strong> « Tu rédiges avec un ton direct, humain, bienveillant et sans jargon marketing creux. »</p>
           </div>
-          <div class="card">
-            <h4>📁 Projet 4 : Gestion Administrative & Qualiopi</h4>
-            <p style="margin-bottom:12px;"><strong>Pour qui :</strong> Pôle Administratif & Coordination.<br><strong>Fichiers à déposer :</strong> Modèles de conventions de formation, grille des critères Qualiopi, grilles tarifaires 2026.<br><strong>Consignes du projet :</strong> « Tu es assistant de gestion certifié. Tu rédiges les courriers de relance OPCO et sécurises la conformité des dossiers. »</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">📁 Projet 4 : Gestion Administrative & Qualiopi</h3>
+            <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;"><strong>Fichiers :</strong> Modèles de conventions, grille des critères Qualiopi, grilles tarifaires 2026.<br><strong>Consigne :</strong> « Tu rédiges les courriers de relance OPCO et sécurises la conformité des dossiers. »</p>
           </div>
         </div>
       `;
@@ -684,228 +697,67 @@ Produis le bilan d'évaluation Qualiopi :
   },
   {
     id: "skills",
-    label: "🧩 4. Les Compétences (Skills)",
+    label: "🧩 4. Compétences & Skills",
     render: () => {
       return `
-        <div class="sec-head">
-          <div class="sec-kicker">Modules d'Expertise & Bibliothèques Packagées</div>
-          <h2 class="sec-title">5 Compétences Métiers Packagées & Prêtes à l'Emploi</h2>
-          <p class="sec-desc">Un <strong>Skill (Compétence)</strong> est un ensemble d'instructions avancées qui spécialise Claude sur un processus complexe. Copiez le code ci-dessous et collez-le dans les <strong>Instructions de votre Projet Claude</strong>.</p>
+        <div class="section-header">
+          <div class="section-tag">Modules Packagés & Prêts à l'Emploi</div>
+          <h2 class="section-title">5 Compétences d'Élite pour Claude Pro</h2>
+          <p class="section-desc">Copiez ces compétences et collez-les dans les <strong>Instructions de vos Projets Claude</strong>.</p>
         </div>
 
-        <div class="callout callout-gold">
-          <strong>💡 Comment installer un Skill :</strong> Cliquez sur <strong>📋 Copier le Skill</strong> ci-dessous, ouvrez votre Projet Claude sur Claude.ai, et collez le texte dans le champ <strong>Project Instructions</strong>.
-        </div>
-
-        <!-- SKILL 1 -->
-        <div class="prompt-card" style="border-left: 4px solid var(--accent); margin-bottom:18px;">
+        <div class="prompt-card" style="border-left: 4px solid var(--terracotta);">
           <div class="prompt-header">
-            <span class="prompt-tag">Skill 1 · Formateurs Kinés</span>
-            <button class="copy-btn" onclick="copyPromptText(this)">📋 Copier le Skill</button>
+            <span class="prompt-badge">Skill 1 · Formateurs Kinés</span>
+            <button class="btn-copy" onclick="copySnippet(this)">
+              <svg class="svg-icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              Copier le Skill
+            </button>
           </div>
-          <h4 style="font-size:16px; margin-bottom:6px;">🎙️ Skill : Dictée Vocale de Terrain → Rapport d'Intervention Normé</h4>
-          <p style="font-size:12.5px; color:var(--soft); margin-bottom:8px;"><strong>Rôle :</strong> Prend une dictée brute de 2 min enregistrée au smartphone et sort un compte-rendu biomécanique en 4 parties aux normes Gestuel'Santé.</p>
-          <div class="prompt-box">
-            <textarea class="prompt-text" style="min-height:160px;" readonly># COMPÉTENCE : RÉDACTEUR DE COMPTES-RENDUS D'INTERVENTION GESTUEL'SANTÉ
+          <h3 style="font-size:16px; margin-bottom:6px;">🎙️ Skill : Dictée Vocale de Terrain → Rapport d'Intervention Normé</h3>
+          <div class="prompt-textarea-wrap">
+            <textarea class="prompt-textarea" readonly># COMPÉTENCE : RÉDACTEUR DE COMPTES-RENDUS D'INTERVENTION GESTUEL'SANTÉ
 
 ## RÔLE & POSTURE
 Tu es le rédacteur expert des comptes-rendus d'intervention pour Gestuel'Santé. Tu reçois des dictées vocales brutes de kinésithérapeutes formateurs après leurs interventions en entreprise.
 
 ## STRUCTURE DE SORTIE OBLIGATOIRE
 À partir de toute transcription vocale brute fournie par l'utilisateur, produis systématiquement un rapport structuré en 4 volets :
-
-1. CADRE DE L'INTERVENTION
-- Entreprise cliente & Site d'intervention
-- Date & Formateur kiné référent
-- Postes de travail observés & Nombre d'opérateurs formés
-
-2. CONSTATS BIOMÉCANIQUES & FACTEURS DE RISQUE
-- Contraintes posturales observées (torsions, flexions répétées, port de charges, travail statique)
-- Articulations et zones corporelles sous contrainte (rachis lombaire, cervicales, épaules, poignets)
-- Facteurs organisationnels (cadences, temps de récupération, aménagement de l'espace)
-
-3. ATELIERS PRATIQUES & TRANSMISSION DES GESTES JUSTES
-- Exercices biomécaniques réalisés avec les opérateurs
-- Routines d'échauffement et de réveil musculaire enseignées
-- Retours d'adhésion et réflexes adoptés par les participants
-
-4. PRÉCONISATIONS ERGONOMIQUES POUR LA DIRECTION / HSE
-- 3 actions correctives immédiates à coût zéro (aménagement, réglage hauteur de plan, rotation de postes)
-- 2 recommandations d'investissement ergonomique à moyen terme
+1. CADRE DE L'INTERVENTION (Entreprise, date, poste, stagiaires)
+2. CONSTATS BIOMÉCANIQUES & FACTEURS DE RISQUE (Contraintes, rachis, épaules)
+3. ATELIERS PRATIQUES & GESTES JUSTES (Routines 5 min, adhésion)
+4. PRÉCONISATIONS ERGONOMIQUES (3 actions immédiates à coût zéro, 2 investissements)
 
 ## RÈGLES D'OR
 - Langage direct, clair, professionnel et accessible aux non-médecins.
-- Anonymiser strictement les noms des opérateurs (utiliser "Opérateur poste 1", "Préparateur ligne A").</textarea>
+- Anonymiser strictement les noms des opérateurs.</textarea>
           </div>
         </div>
 
-        <!-- SKILL 2 -->
-        <div class="prompt-card" style="border-left: 4px solid var(--teal); margin-bottom:18px;">
+        <div class="prompt-card" style="border-left: 4px solid var(--teal);">
           <div class="prompt-header">
-            <span class="prompt-tag">Skill 2 · Pédagogie & Supports</span>
-            <button class="copy-btn" onclick="copyPromptText(this)">📋 Copier le Skill</button>
+            <span class="prompt-badge">Skill 2 · Pédagogie Visuelle</span>
+            <button class="btn-copy" onclick="copySnippet(this)">
+              <svg class="svg-icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              Copier le Skill
+            </button>
           </div>
-          <h4 style="font-size:16px; margin-bottom:6px;">🎨 Skill : Fiches Mémo d'Échauffement Visuelles (Claude Artifacts)</h4>
-          <p style="font-size:12.5px; color:var(--soft); margin-bottom:8px;"><strong>Rôle :</strong> Génère une fiche pratique d'échauffement de 5 min sous forme d'Artifact interactif et imprimable avec postures et consignes pas à pas.</p>
-          <div class="prompt-box">
-            <textarea class="prompt-text" style="min-height:160px;" readonly># COMPÉTENCE : GÉNÉRATEUR DE FICHES MÉMO D'ÉCHAUFFEMENT VISUELLES
+          <h3 style="font-size:16px; margin-bottom:6px;">🎨 Skill : Fiches Mémo d'Échauffement Visuelles (Claude Artifacts)</h3>
+          <div class="prompt-textarea-wrap">
+            <textarea class="prompt-textarea" readonly># COMPÉTENCE : GÉNÉRATEUR DE FICHES MÉMO D'ÉCHAUFFEMENT VISUELLES
 
 ## RÔLE
-Tu es ergonome et designer pédagogique chez Gestuel'Santé. Tu conçois des fiches mémos visuelles d'échauffement et de réveil musculaire au poste de travail.
+Tu es ergonome et designer pédagogique chez Gestuel'Santé. Tu conçois des fiches mémos visuelles d'échauffement au poste de travail dans des Artifacts.
 
-## FORMAT DU LIVRABLE
-Génère systématiquement le livrable dans une fenêtre latérale Artifact (code HTML/CSS autonome épuré et imprimable, ou tableau structuré haute lisibilité).
-
-## CONTENU DE LA FICHE D'ÉCHAUFFEMENT
-Pour chaque routine demandée par métier :
-1. En-tête : Nom du métier cible, durée totale (ex: 5 minutes) et objectif prévention TMS.
-2. Découpage en 5 exercices chronométrés :
-   - Exercice 1 : Réveil articulaire général (1 min)
-   - Exercice 2 : Mobilisation rachis lombaire / bassin (1 min)
-   - Exercice 3 : Déverrouillage ceinture scapulaire & épaules (1 min)
-   - Exercice 4 : Étirements dynamiques poignets / avant-bras (1 min)
-   - Exercice 5 : Respiration & ancrage postural (1 min)
-3. Pour chaque exercice :
-   - Schéma textuel / posture de départ
-   - Consigne pas à pas en 2 phrases
-   - Point de sécurité ("Ne jamais cambrer le dos")
-   - Sensation recherchée
-
-## STYLE VISUEL
-- Contrastes nets, typographie aérée, badge de temps clair pour affichage mural en atelier.</textarea>
-          </div>
-        </div>
-
-        <!-- SKILL 3 -->
-        <div class="prompt-card" style="border-left: 4px solid var(--green); margin-bottom:18px;">
-          <div class="prompt-header">
-            <span class="prompt-tag">Skill 3 · Direction & R&D</span>
-            <button class="copy-btn" onclick="copyPromptText(this)">📋 Copier le Skill</button>
-          </div>
-          <h4 style="font-size:16px; margin-bottom:6px;">🔬 Skill : Veille Scientifique & Médicale TMS (PubMed / INRS)</h4>
-          <p style="font-size:12.5px; color:var(--soft); margin-bottom:8px;"><strong>Rôle :</strong> Filtre la littérature médicale, résume le consensus et extrait 3 chiffres d'impact prouvés pour vos formations.</p>
-          <div class="prompt-box">
-            <textarea class="prompt-text" style="min-height:160px;" readonly># COMPÉTENCE : ANALYSTE SCIENTIFIQUE SANTÉ AU TRAVAIL & TMS
-
-## RÔLE
-Tu es consultant en veille scientifique médicale et ergonomie pour Gestuel'Santé. Tu analyses les publications PubMed, rapports INRS, HAS et études biomécaniques internationales.
-
-## STRUCTURE D'ANALYSE D'UN SUJET
-Lorsque l'utilisateur te soumet une thématique (ex: lombalgies chroniques, travail sédentaire, exosquelettes, échauffement en logistique), structure ta réponse ainsi :
-
-1. ÉTAT DE L'ART & CONSENSUS SCIENTIFIQUE
-- Ce qui est formellement prouvé par la science
-- Ce qui est une idée reçue ou inefficace
-- Les recommandations officielles actuelles (INRS, OMS)
-
-2. 3 CHIFFRES CLÉS D'IMPACT (Chiffrés & Sourcés)
-- Données épidémiologiques et statistiques d'arrêts de travail
-- Taux de réduction du risque grâce à la prévention active
-
-3. APPLICATIONS DIRECTES POUR NOS FORMATIONS
-- L'argument scientifique majeur à citer aux dirigeants d'entreprise
-- Le conseil biomécanique pratique à transmettre aux stagiaires lors des ateliers
-
-## RÈGLES STRICTES
-- Rigueur scientifique totale : citer systématiquement l'organisme d'origine (INRS, PubMed, CNAM).
-- Distinguer clairement les consensus établis des études émergentes.</textarea>
-          </div>
-        </div>
-
-        <!-- SKILL 4 -->
-        <div class="prompt-card" style="border-left: 4px solid var(--gold); margin-bottom:18px;">
-          <div class="prompt-header">
-            <span class="prompt-tag">Skill 4 · Marketing & Communication</span>
-            <button class="copy-btn" onclick="copyPromptText(this)">📋 Copier le Skill</button>
-          </div>
-          <h4 style="font-size:16px; margin-bottom:6px;">📱 Skill : Rédacteur LinkedIn Santé au Travail & Posture Juste</h4>
-          <p style="font-size:12.5px; color:var(--soft); margin-bottom:8px;"><strong>Rôle :</strong> Convertit un constat réel de terrain en post LinkedIn d'autorité en 5 temps (Hook, Constat, Mécanisme, Geste kiné, Question).</p>
-          <div class="prompt-box">
-            <textarea class="prompt-text" style="min-height:160px;" readonly># COMPÉTENCE : COPYWRITER LINKEDIN EXPERT EN SANTÉ AU TRAVAIL
-
-## RÔLE
-Tu es le rédacteur LinkedIn officiel de Gestuel'Santé. Tu conçois des publications engageantes sur la santé au travail, l'ergonomie et la prévention des TMS.
-
-## FORMAT DE POST LINKEDIN GESTUEL'SANTÉ
-Chaque post doit respecter la trame narrative en 5 temps :
-
-1. L'ACCROCHE (Hook 1-2 lignes) :
-   - Brise une idée reçue ou pose un chiffre frappant sur le mal de dos ou les arrêts maladie.
-2. LE CONSTAT TERRAIN :
-   - Une anecdote ou situation réelle observée cette semaine en entreprise par nos kinésithérapeutes.
-3. L'EXPLICATION DU MÉCANISME :
-   - Pourquoi le corps souffre (explication anatomique vulgarisée en 2 phrases simples).
-4. LE CONSEIL DU KINÉ :
-   - Un geste correcteur concret applicable dès aujourd'hui par n'importe quel salarié.
-5. LA QUESTION DE SORTIE & APPEL À L'ÉCHANGE :
-   - Une question ouverte engageante invitant managers, HSE et salariés à commenter.
-
-## RÈGLES ÉDITORIALES
-- Phrases courtes, saut de ligne entre chaque idée.
-- Zéro mot marketing creux ("révolutionnaire", "innovant", "au cœur de").
-- Ton bienveillant, expert et axé sur l'action concrète.</textarea>
-          </div>
-        </div>
-
-        <!-- SKILL 5 -->
-        <div class="prompt-card" style="border-left: 4px solid var(--cyan); margin-bottom:18px;">
-          <div class="prompt-header">
-            <span class="prompt-tag">Skill 5 · Administratif & Qualiopi</span>
-            <button class="copy-btn" onclick="copyPromptText(this)">📋 Copier le Skill</button>
-          </div>
-          <h4 style="font-size:16px; margin-bottom:6px;">📑 Skill : Assistant Relance AKTO / OPCO & Subrogations de Paiement</h4>
-          <p style="font-size:12.5px; color:var(--soft); margin-bottom:8px;"><strong>Rôle :</strong> Rédige les courriers de relance pour débloquer les accords de prise en charge et règlements de conventions de formation.</p>
-          <div class="prompt-box">
-            <textarea class="prompt-text" style="min-height:160px;" readonly># COMPÉTENCE : EXPERT CONVENTIONS DE FORMATION & RELANCES OPCO
-
-## RÔLE
-Tu es assistant de gestion administrative chez Gestuel'Santé. Tu rédiges des courriers et emails précis pour fluidifier les démarches de financement de nos formations (AKTO, OPCO EP, Atlas, Transitions Pro).
-
-## TYPES DE DEMANDES PRISES EN CHARGE
-1. Relance d'accord de prise en charge subrogation avant la date de démarrage de session.
-2. Demande de pièces complémentaires (attestation d'assiduité, feuilles d'émargement, bilan pédagogique).
-3. Relance de paiement d'une facture de formation échue.
-
-## EXIGENCE DE RÉDACTION
-- Rappel systématique des références réglementaires et numéros de dossiers (N° Déclaration d'activité, N° Convention, Dates de session).
-- Ton : courtois, rigoureux, respectueux mais ferme sur les échéances administratives.
-- Format : Objet explicite + Corps du message en 3 paragraphes concis + Liste des pièces jointes numérotées.</textarea>
-          </div>
-        </div>
-
-        <!-- HUBS & RESSOURCES EXTERNES -->
-        <div class="sec-head" style="margin-top:36px;">
-          <div class="sec-kicker">Bibliothèques Officielles & Hubs Open Source</div>
-          <h2 class="sec-title">Où trouver d'autres Skills et Prompts Avancés ?</h2>
-          <p class="sec-desc">Accédez aux meilleures bibliothèques de compétences et de templates vérifiés pour aller plus loin.</p>
-        </div>
-
-        <div class="grid-3">
-          <div class="res-card">
-            <div>
-              <div class="res-tag">Anthropic Officiel</div>
-              <div class="res-title">Anthropic Prompt Library</div>
-              <div class="res-desc">Plus de 60 compétences prêtes à l'emploi triées par rôle (Marketing, RH, Finance, Ingénierie) avec des exemples réels.</div>
-            </div>
-            <a href="https://docs.anthropic.com/en/prompt-library/library" target="_blank" class="res-link">↗ Explorer la bibliothèque Anthropic</a>
-          </div>
-
-          <div class="res-card">
-            <div>
-              <div class="res-tag">GitHub Open Source</div>
-              <div class="res-title">Anthropic Cookbook</div>
-              <div class="res-desc">Le recueil officiel de recettes et de prompts complexes maintenu par les équipes de recherche d'Anthropic.</div>
-            </div>
-            <a href="https://github.com/anthropics/anthropic-cookbook" target="_blank" class="res-link">↗ Voir le Cookbook GitHub</a>
-          </div>
-
-          <div class="res-card">
-            <div>
-              <div class="res-tag">Système & Posture</div>
-              <div class="res-title">System Prompts Repository</div>
-              <div class="res-desc">Bibliothèque de consignes de cadrage pour paramétrer des assistants spécialisés dans chaque domaine d'activité.</div>
-            </div>
-            <a href="https://github.com/jiras/claude-system-prompts" target="_blank" class="res-link">↗ Découvrir les System Prompts</a>
+## STRUCTURE DE LA FICHE
+1. En-tête : Métier cible, durée totale (5 min) et objectif prévention TMS.
+2. 5 exercices chronométrés :
+   - Ex 1 : Réveil articulaire général (1 min)
+   - Ex 2 : Mobilisation rachis lombaire / bassin (1 min)
+   - Ex 3 : Déverrouillage épaules & cervicales (1 min)
+   - Ex 4 : Étirements dynamiques poignets (1 min)
+   - Ex 5 : Respiration & ancrage postural (1 min)
+3. Pour chaque exercice : nom, consigne en 2 phrases, posture clé et point de vigilance sécurité.</textarea>
           </div>
         </div>
       `;
@@ -913,51 +765,36 @@ Tu es assistant de gestion administrative chez Gestuel'Santé. Tu rédiges des c
   },
   {
     id: "prompting",
-    label: "⚡ 5. Méthodes de Prompting & Raccourcis",
+    label: "⚡ 5. Méthode RCTE & XML",
     render: () => {
       return `
-        <div class="sec-head">
-          <div class="sec-kicker">L'Art du Prompting Professionnel</div>
-          <h2 class="sec-title">La Méthode RCTE & Les Balises Structurantes</h2>
-          <p class="sec-desc">Pour obtenir 100% de pertinence dès le premier coup, structurez vos prompts avec les 4 piliers fondamentaux.</p>
+        <div class="section-header">
+          <div class="section-tag">Rigueur & Efficacité Maximale</div>
+          <h2 class="section-title">Le Framework RCTE & Les Balises Structurantes</h2>
+          <p class="section-desc">La méthode des experts Anthropic pour obtenir 100% de pertinence dès la première tentative.</p>
         </div>
 
         <div class="grid-2">
-          <div class="card">
-            <h4>📐 Le Framework RCTE (La Formule d'Or)</h4>
-            <p style="margin-bottom:8px;"><strong>1. Rôle (R) :</strong> Définissez qui est Claude (<em>« Tu es kiné ergonome consultant pour Gestuel'Santé »</em>).</p>
-            <p style="margin-bottom:8px;"><strong>2. Contexte (C) :</strong> Donnez le décor (<em>« Nous intervenons chez un logisticien de 150 salariés avec 40% de port de charges »</em>).</p>
-            <p style="margin-bottom:8px;"><strong>3. Tâche (T) :</strong> Décrivez l'action exacte (<em>« Rédige un protocole d'échauffement de 5 minutes »</em>).</p>
-            <p><strong>4. Exigences (E) :</strong> Fixez le format de sortie (<em>« Tableau 4 colonnes, zéro jargon médical, ton bienveillant »</em>).</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:12px;">📐 Le Framework RCTE</h3>
+            <p style="margin-bottom:8px;"><strong>1. Rôle (R) :</strong> <em>« Tu es kiné ergonome consultant pour Gestuel'Santé »</em>.</p>
+            <p style="margin-bottom:8px;"><strong>2. Contexte (C) :</strong> <em>« Session chez un logisticien de 150 salariés, port de charges répétitif »</em>.</p>
+            <p style="margin-bottom:8px;"><strong>3. Tâche (T) :</strong> <em>« Conçois une routine de réveil musculaire de 5 minutes »</em>.</p>
+            <p><strong>4. Exigences (E) :</strong> <em>« Tableau 4 colonnes, zéro jargon médical, ton dynamique »</em>.</p>
           </div>
 
-          <div class="card">
-            <h4>⌨️ Raccourcis Clavier Essentiels Claude</h4>
-            <p style="margin-bottom:8px;"><strong>Nouveau Chat instantané :</strong> <code>Ctrl + K</code> (Win) ou <code>Cmd + K</code> (Mac).</p>
-            <p style="margin-bottom:8px;"><strong>Saut de ligne sans envoyer :</strong> <code>Shift + Entrée</code>.</p>
-            <p style="margin-bottom:8px;"><strong>Basculer dans les Artifacts :</strong> Cliquez sur l'icône fenêtre en haut à droite.</p>
-            <p><strong>Application Bureau globale :</strong> <code>Option + Espace</code> (Mac) ou <code>Alt + Espace</code> (Win) pour ouvrir Claude partout.</p>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:20px;">
-          <h4>🏷️ La Puissance des Balises Structurantes (Best Practice Reddit & Anthropic)</h4>
-          <p style="margin-bottom:12px;">Utilisez des balises claires pour séparer vos données brutes de vos consignes. Claude comprend instantanément la hiérarchie :</p>
-          <div class="prompt-box">
-            <textarea class="prompt-text" style="min-height:140px;" readonly>Tu es rédacteur pour Gestuel'Santé.
-
-Voici le contexte de la session :
-<contexte>
-Entreprise : Agroalimentaire 200 personnes. Postes de travail statiques au froid.
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:12px;">🏷️ Balises XML Structurantes</h3>
+            <p style="margin-bottom:10px;">Isolez vos données des consignes pour éviter toute confusion :</p>
+            <div class="prompt-textarea-wrap">
+              <textarea class="prompt-textarea" style="min-height:110px;" readonly><contexte>
+Entreprise de logistique, 200 caristes et préparateurs.
 </contexte>
 
-Voici les retours bruts des salariés :
 <retours_bruts>
-- "On a mal aux épaules en fin de journée"
-- "La routine du matin nous fait du bien"
-</retours_bruts>
-
-Produis 3 préconisations ergonomiques prioritaires.</textarea>
+"Le rythme du matin tire sur les lombaires en fin de poste."
+</retours_bruts></textarea>
+            </div>
           </div>
         </div>
       `;
@@ -965,27 +802,27 @@ Produis 3 préconisations ergonomiques prioritaires.</textarea>
   },
   {
     id: "modeles",
-    label: "🤖 6. Quel Modèle Choisir ?",
+    label: "🤖 6. Modèles Claude",
     render: () => {
       return `
-        <div class="sec-head">
-          <div class="sec-kicker">Comprendre le moteur sous le capot</div>
-          <h2 class="sec-title">Quel modèle Claude choisir selon votre besoin ?</h2>
-          <p class="sec-desc">Claude propose 3 modèles selon la complexité et la vitesse désirées.</p>
+        <div class="section-header">
+          <div class="section-tag">Choix du Moteur IA</div>
+          <h2 class="section-title">Quel Modèle Choisir dans Claude.ai ?</h2>
+          <p class="section-desc">Sélectionnez le modèle adapté à la complexité de votre tâche.</p>
         </div>
 
         <div class="grid-3">
-          <div class="card">
-            <h4>⚡ Claude Sonnet (Défaut · 90% du temps)</h4>
-            <p><strong>Forces :</strong> Vitesse ultra-rapide, finesse d'écriture, compréhension des consignes et nuances.<br><strong>Usage Gestuel'Santé :</strong> Comptes-rendus kinés, fiches d'échauffement, posts LinkedIn, emails OPCO.</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">⚡ Sonnet 3.7 (90% du temps)</h3>
+            <p style="font-size:13.5px; color:var(--text-muted);">Idéal pour la rédaction des comptes-rendus, fiches d'échauffement, posts LinkedIn et courriers OPCO.</p>
           </div>
-          <div class="card">
-            <h4>🧠 Claude Opus (Raisonnement Complexe)</h4>
-            <p><strong>Forces :</strong> Analyse profonde sur des dossiers lourds et des cahiers des charges complexes.<br><strong>Usage Gestuel'Santé :</strong> Réponses aux appels d'offres de 60 pages, synthèse de conventions multi-sites.</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">🧠 Claude Opus (Raisonnement lourd)</h3>
+            <p style="font-size:13.5px; color:var(--text-muted);">Parfait pour dépouiller les cahiers des charges d'appels d'offres de 50 pages et conventions complexes.</p>
           </div>
-          <div class="card">
-            <h4>🚀 Claude Haiku (Vitesse Instantanée)</h4>
-            <p><strong>Forces :</strong> Réponse instantanée pour des opérations courtes et répétitives.<br><strong>Usage Gestuel'Santé :</strong> Corriger l'orthographe, reformuler un titre, traduire un court extrait.</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">🚀 Claude Haiku (Instantané)</h3>
+            <p style="font-size:13.5px; color:var(--text-muted);">Conçu pour la correction orthographique rapide, le renommage de titres et les micro-tâches.</p>
           </div>
         </div>
       `;
@@ -993,52 +830,50 @@ Produis 3 préconisations ergonomiques prioritaires.</textarea>
   },
   {
     id: "securite",
-    label: "🔒 7. Confidentialité & RGPD Santé",
+    label: "🔒 7. RGPD & Secret Médical",
     render: () => {
       return `
-        <div class="sec-head">
-          <div class="sec-kicker">Réglementation & Secret Médical</div>
-          <h2 class="sec-title">Guide de Sécurité des Données chez Gestuel'Santé</h2>
-          <p class="sec-desc">La prévention des TMS touche à la santé au travail : voici les règles intangibles.</p>
+        <div class="section-header">
+          <div class="section-tag">Conformité & Éthique Santé</div>
+          <h2 class="section-title">Règles de Confidentialité des Données</h2>
+          <p class="section-desc">La prévention des TMS touche au secret médical : appliquez ces règles intangibles.</p>
         </div>
 
-        <div class="callout callout-red">
-          <strong>⛔ STRICTEMENT INTERDIT :</strong> Ne jamais entrer de noms/prénoms de salariés associés à des pathologies précises, diagnostics médicaux ou comptes-rendus d'examens individuels.
-        </div>
-        <div class="callout callout-green">
-          <strong>✅ AUTORISÉ & RECOMMANDÉ :</strong> Décrire les contraintes biomécaniques d'un poste de travail (« Opérateur au poste de mise en carton »), observations ergonomiques d'ateliers, statistiques globales d'accidents du travail.
+        <div class="callout-box callout-rose">
+          <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+          <div><strong>STRICTEMENT INTERDIT :</strong> Ne jamais entrer de noms/prénoms de salariés associés à des diagnostics médicaux individuels ou comptes-rendus d'examens.</div>
         </div>
 
-        <div class="card" style="margin-top:16px;">
-          <h4>⚙️ Paramètre de Confidentialité Claude Pro (Désactiver l'entraînement)</h4>
-          <p>Dans votre compte Claude.ai, rendez-vous dans <strong>Settings > Privacy Choices</strong> et assurez-vous que l'option d'entraînement des modèles sur vos données est désactivée. Vos échanges restent 100% privés et confidentiels.</p>
+        <div class="bento-card">
+          <h3 style="font-size:17px; margin-bottom:8px;">⚙️ Désactiver l'entraînement sur vos données</h3>
+          <p style="font-size:13.5px; color:var(--text-muted);">Dans votre compte Claude.ai → <strong>Settings > Privacy Choices</strong>, vérifiez que l'option d'entraînement des modèles sur vos conversations est désactivée.</p>
         </div>
       `;
     }
   },
   {
     id: "plan",
-    label: "🚀 8. Plan d'Action J+1 à J+30",
+    label: "🚀 8. Plan J+1 à J+30",
     render: () => {
       return `
-        <div class="sec-head">
-          <div class="sec-kicker">Ancrage Pédagogique Durable</div>
-          <h2 class="sec-title">La Routine 10 Minutes Quotidienne</h2>
-          <p class="sec-desc">Pour que la formation transforme réellement vos pratiques, appliquez cette routine dès demain matin.</p>
+        <div class="section-header">
+          <div class="section-tag">Ancrage Pédagogique</div>
+          <h2 class="section-title">Routine 10 Minutes Quotidienne</h2>
+          <p class="section-desc">Pour que la formation transforme réellement vos pratiques dès demain matin.</p>
         </div>
 
         <div class="grid-3">
-          <div class="card">
-            <h4>📅 Semaine 1 : Le Réflexe Dictée Vocale</h4>
-            <p>Testez la dictée vocale après chaque intervention terrain. Prenez 2 minutes au smartphone et laissez Claude générer votre premier jet de compte-rendu.</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">📅 Semaine 1 : Dictée Vocale</h3>
+            <p style="font-size:13.5px; color:var(--text-muted);">Adoptez le réflexe de dicter 2 minutes au smartphone après chaque atelier pour générer le premier jet du rapport.</p>
           </div>
-          <div class="card">
-            <h4>📁 Semaine 2 : L'Espace Projet Équipe</h4>
-            <p>Déposez vos 3 fichiers de référence dans vos Projets Claude d'équipe. Lancez vos conversations uniquement dans le Projet dédié.</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">📁 Semaine 2 : Projets d'Équipe</h3>
+            <p style="font-size:13.5px; color:var(--text-muted);">Chargez vos 3 fichiers de référence dans vos Projets Claude d'équipe et lancez vos chats dedans.</p>
           </div>
-          <div class="card">
-            <h4>🚀 Semaine 3 & 4 : Automatisation & Partage</h4>
-            <p>Partagez vos meilleurs prompts et fiches mémos créées lors des réunions d'équipe pour enrichir la mémoire collective Gestuel'Santé.</p>
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">🚀 Semaine 3 & 4 : Partage</h3>
+            <p style="font-size:13.5px; color:var(--text-muted);">Partagez vos meilleurs prompts et fiches d'échauffement créées en réunion d'équipe pour mutualiser les acquis.</p>
           </div>
         </div>
       `;
@@ -1046,37 +881,33 @@ Produis 3 préconisations ergonomiques prioritaires.</textarea>
   },
   {
     id: "outils",
-    label: "🛠️ 9. Boîte à Outils & Extensions",
+    label: "🛠️ 9. Boîte à Outils",
     render: () => {
       const TOOLS = [
-        { icon: "🧠", name: "Claude.ai Web & Desktop", desc: "Interface principale d'IA générative avec support des Projets et Artifacts.", url: "https://claude.ai" },
-        { icon: "🎙️", name: "Whisper & Dictée Vocale", desc: "Transcription audio instantanée pour convertir vos retours de terrain oraux en texte.", url: "https://openai.com/research/whisper" },
-        { icon: "🔍", name: "Perplexity AI", desc: "Moteur de recherche IA sourcé pour la veille scientifique et l'actualité prévention.", url: "https://www.perplexity.ai" },
-        { icon: "🎨", name: "Gamma App", desc: "Génération automatique de présentations et de documents interactifs prêts à projeter.", url: "https://gamma.app" },
-        { icon: "🎧", name: "NotebookLM", desc: "Carnet de recherche Google sur vos propres PDF avec génération de podcasts audio.", url: "https://notebooklm.google.com" },
-        { icon: "📊", name: "Canva & Genially", desc: "Création de fiches visuelles d'échauffement et d'infographies de prévention.", url: "https://www.canva.com" },
-        { icon: "🔬", name: "PubMed & INRS", desc: "Bases de données médicales et ergonomiques pour valider les consensus scientifiques.", url: "https://pubmed.ncbi.nlm.nih.gov" },
-        { icon: "🛡️", name: "CNIL — Guide IA", desc: "Recommandations et conformité RGPD pour le traitement des données en entreprise.", url: "https://www.cnil.fr/fr/intelligence-artificielle" }
+        { icon: "🧠", name: "Claude.ai", desc: "Assistant d'écriture, analyse et Artifacts.", url: "https://claude.ai" },
+        { icon: "🎙️", name: "Whisper", desc: "Transcription audio des dictées de terrain.", url: "https://openai.com/research/whisper" },
+        { icon: "🔍", name: "Perplexity AI", desc: "Moteur de recherche IA sourcé pour la veille.", url: "https://www.perplexity.ai" },
+        { icon: "🎨", name: "Gamma App", desc: "Création automatique de présentations et supports.", url: "https://gamma.app" },
+        { icon: "🎧", name: "NotebookLM", desc: "Carnet de recherche Google sur vos propres PDF.", url: "https://notebooklm.google.com" },
+        { icon: "🔬", name: "PubMed & INRS", desc: "Bases médicales pour valider les consensus.", url: "https://pubmed.ncbi.nlm.nih.gov" }
       ];
 
       return `
-        <div class="sec-head">
-          <div class="sec-kicker">Écosystème & Productivité</div>
-          <h2 class="sec-title">Les 8 Outils Clés Complémentaires</h2>
-          <p class="sec-desc">Sélection des outils et extensions indispensables pour booster votre pratique quotidienne de l'IA.</p>
+        <div class="section-header">
+          <div class="section-tag">Écosystème Numérique</div>
+          <h2 class="section-title">Les Outils Complémentaires</h2>
+          <p class="section-desc">Les meilleures applications pour compléter votre usage de Claude Pro.</p>
         </div>
 
-        <div class="grid-4">
+        <div class="grid-3">
           ${TOOLS.map(t => `
-            <div class="tool-item">
+            <div class="bento-card" style="display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="tool-top">
-                  <span class="tool-icon">${t.icon}</span>
-                  <div class="tool-name">${t.name}</div>
-                </div>
-                <div class="tool-desc">${t.desc}</div>
+                <div style="font-size:24px; margin-bottom:8px;">${t.icon}</div>
+                <h3 style="font-size:16.5px; font-weight:700; margin-bottom:4px;">${t.name}</h3>
+                <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">${t.desc}</p>
               </div>
-              <a href="${t.url}" target="_blank" class="tool-btn">🚀 Ouvrir l'outil</a>
+              <a href="${t.url}" target="_blank" rel="noopener" class="nav-btn" style="justify-content:center;">Ouvrir l'outil</a>
             </div>
           `).join('')}
         </div>
@@ -1085,48 +916,35 @@ Produis 3 préconisations ergonomiques prioritaires.</textarea>
   },
   {
     id: "ressources",
-    label: "📚 10. Ressources, Veille & Contacts",
+    label: "📚 10. Contacts & Réseaux",
     render: () => {
       return `
-        <div class="sec-head">
-          <div class="sec-kicker">Ressources Officielles & Contacts Formateurs</div>
-          <h2 class="sec-title">Pour Aller Plus Loin Après la Session</h2>
-          <p class="sec-desc">Toutes les ressources vérifiées (Reddit r/ClaudeAI, YouTube, X, Certifications) pour continuer à vous former gratuitement.</p>
+        <div class="section-header">
+          <div class="section-tag">Réseau Axem IA & Formation Continue</div>
+          <h2 class="section-title">Restons Connectés Après la Formation</h2>
+          <p class="section-desc">Suivez les publications hebdomadaires de vos formateurs et accédez aux certifications reconnues.</p>
         </div>
 
-        <div style="background:linear-gradient(135deg,rgba(217,119,87,.16),rgba(14,25,38,.4));border:1px solid rgba(217,119,87,.45);border-radius:16px;padding:22px;margin-bottom:26px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;">
-          <div style="font-size:42px;line-height:1;">👨‍🏫</div>
-          <div style="flex:1;min-width:220px;">
-            <div style="font-size:17px;font-weight:800;color:#fff;margin-bottom:4px;font-family:'Space Grotesk',sans-serif;">Suivez Clément Predo & Alexis Zeitoun sur LinkedIn</div>
-            <div style="font-size:13px;color:var(--soft);margin-bottom:12px;">Vos formateurs publient chaque semaine des retours d'expérience concrets, des prompts testés et les nouveautés IA majeures.</div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <a href="https://www.linkedin.com/in/clement-predo/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#0A66C2;color:#fff;font-weight:700;font-size:13px;padding:9px 16px;border-radius:8px;text-decoration:none;">in · Clément Predo (30k+)</a>
-              <a href="https://www.linkedin.com/in/alexiszeitoun/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#0A66C2;color:#fff;font-weight:700;font-size:13px;padding:9px 16px;border-radius:8px;text-decoration:none;">in · Alexis Zeitoun (10k+)</a>
-              <a href="https://www.axem-ia.fr/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);color:#fff;font-weight:700;font-size:13px;padding:9px 16px;border-radius:8px;text-decoration:none;">🌐 Site Axem IA</a>
-            </div>
+        <div class="bento-card" style="background:linear-gradient(135deg, rgba(217,119,87,0.16), var(--bg-surface)); border-color:rgba(217,119,87,0.4); margin-bottom:24px;">
+          <h3 style="font-size:18px; margin-bottom:8px;">👨‍🏫 Vos Formateurs Axem IA sur LinkedIn</h3>
+          <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:16px;">Clément et Alexis partagent chaque semaine des prompts testés, des retours d'expérience et les évolutions de l'IA.</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="https://www.linkedin.com/in/clement-predo/" target="_blank" rel="noopener" class="nav-btn primary">in · Clément Predo (30k+)</a>
+            <a href="https://www.linkedin.com/in/alexiszeitoun/" target="_blank" rel="noopener" class="nav-btn primary">in · Alexis Zeitoun (10k+)</a>
+            <a href="https://www.axem-ia.fr/" target="_blank" rel="noopener" class="nav-btn">🌐 Site Axem IA</a>
           </div>
         </div>
 
-        <div class="grid-3">
-          <div class="card">
-            <h4>🎓 Certifications Gratuites</h4>
-            <p style="margin-bottom:8px;"><a href="https://grow.google/intl/fr/ai-trainings/" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Google AI Essentials</a> — Certification pratique sur l'IA au travail (~10h).</p>
-            <p style="margin-bottom:8px;"><a href="https://elementsofai.fr" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Elements of AI (Univ. Helsinki)</a> — Cours européen reconnu (~20h).</p>
-            <p><a href="https://openclassrooms.com" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Objectif IA (OpenClassrooms)</a> — Les fondamentaux en français (5h).</p>
+        <div class="grid-2">
+          <div class="bento-card">
+            <h3 style="font-size:16.5px; margin-bottom:10px;">🎓 Certifications Gratuites Recommandées</h3>
+            <p style="font-size:13.5px; margin-bottom:6px;"><a href="https://grow.google/intl/fr/ai-trainings/" target="_blank" rel="noopener" style="color:var(--terracotta-light); text-decoration:underline;">↗ Google AI Essentials</a> — Formation pratique sur l'IA au travail.</p>
+            <p style="font-size:13.5px;"><a href="https://elementsofai.fr" target="_blank" rel="noopener" style="color:var(--terracotta-light); text-decoration:underline;">↗ Elements of AI</a> — Le cours européen de référence (Univ. Helsinki).</p>
           </div>
-
-          <div class="card">
-            <h4>🎙️ Podcasts & Vidéos IA</h4>
-            <p style="margin-bottom:8px;"><a href="https://youtube.com/@Underscore_" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Underscore_ / Micode</a> — Talk-show tech et IA francophone.</p>
-            <p style="margin-bottom:8px;"><a href="https://generationia-asso.fr" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Génération IA</a> — Podcast des usages concrets de l'IA.</p>
-            <p><a href="https://youtube.com/@monsieur_ia" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Monsieur IA (YouTube)</a> — Tutoriels et actualités pratiques.</p>
-          </div>
-
-          <div class="card">
-            <h4>🌐 Communautés & Veille</h4>
-            <p style="margin-bottom:8px;"><a href="https://reddit.com/r/ClaudeAI" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Reddit r/ClaudeAI</a> — Retours d'expérience et astuces d'experts mondiaux.</p>
-            <p style="margin-bottom:8px;"><a href="https://x.com/alexalbert__" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Alex Albert (Anthropic Dev Rel sur X)</a> — Annonces officielles et prompts.</p>
-            <p><a href="https://docs.anthropic.com/en/prompt-library/library" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Anthropic Prompt Library</a> — Bibliothèque officielle de compétences.</p>
+          <div class="bento-card">
+            <h3 style="font-size:16.5px; margin-bottom:10px;">🎙️ Veille & Communautés d'Experts</h3>
+            <p style="font-size:13.5px; margin-bottom:6px;"><a href="https://reddit.com/r/ClaudeAI" target="_blank" rel="noopener" style="color:var(--terracotta-light); text-decoration:underline;">↗ Reddit r/ClaudeAI</a> — Retours et astuces des utilisateurs avancés.</p>
+            <p style="font-size:13.5px;"><a href="https://docs.anthropic.com/en/prompt-library/library" target="_blank" rel="noopener" style="color:var(--terracotta-light); text-decoration:underline;">↗ Anthropic Prompt Library</a> — Bibliothèque officielle de compétences.</p>
           </div>
         </div>
       `;
@@ -1137,69 +955,73 @@ Produis 3 préconisations ergonomiques prioritaires.</textarea>
 function initGate() {
   const grid = document.getElementById('gateGrid');
   grid.innerHTML = PEOPLE.map(p => `
-    <div class="name-card" onclick="selectPerson('${p.id}')">
-      <div class="nc-avatar">${p.first[0]}</div>
-      <div class="nc-name">${p.first} ${p.last}</div>
-      <div class="nc-role">${p.role}</div>
-      <div class="nc-pole">${p.pole}</div>
+    <div class="name-card" onclick="choosePerson('${p.id}')">
+      <div class="nc-top">
+        <div class="nc-avatar">${p.first[0]}</div>
+        <div class="nc-pole">${p.pole}</div>
+      </div>
+      <div>
+        <div class="nc-name">${p.first} ${p.last}</div>
+        <div class="nc-role">${p.role}</div>
+      </div>
     </div>
   `).join('');
 }
 
-function selectPerson(id) {
-  currentPerson = PEOPLE.find(p => p.id === id);
-  document.getElementById('gate').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
+function choosePerson(id) {
+  currentUser = PEOPLE.find(p => p.id === id);
+  document.getElementById('gateView').style.display = 'none';
+  document.getElementById('appView').style.display = 'flex';
   
-  document.getElementById('hdrAvatar').textContent = currentPerson.first[0];
-  document.getElementById('hdrName').textContent = currentPerson.first + ' ' + currentPerson.last;
-  document.getElementById('hdrRole').textContent = currentPerson.role;
+  document.getElementById('navAvatar').textContent = currentUser.first[0];
+  document.getElementById('navName').textContent = currentUser.first + ' ' + currentUser.last;
+  document.getElementById('navRole').textContent = currentUser.role;
   
   buildTabs();
-  switchTab(0);
+  selectTab(0);
 }
 
-function exitApp() {
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('gate').style.display = 'flex';
-  currentPerson = null;
+function switchProfile() {
+  document.getElementById('appView').style.display = 'none';
+  document.getElementById('gateView').style.display = 'flex';
+  currentUser = null;
 }
 
 function buildTabs() {
-  const nav = document.getElementById('tabsNav');
-  nav.innerHTML = '';
-  TABS.forEach((t, i) => {
+  const list = document.getElementById('tabsList');
+  list.innerHTML = '';
+  TABS.forEach((t, idx) => {
     const btn = document.createElement('button');
-    btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+    btn.className = 'tab-item' + (idx === 0 ? ' active' : '');
     btn.textContent = t.label;
-    btn.onclick = () => switchTab(i);
-    nav.appendChild(btn);
+    btn.onclick = () => selectTab(idx);
+    list.appendChild(btn);
   });
 }
 
-function switchTab(idx) {
-  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
-  const content = document.getElementById('tabContent');
-  content.innerHTML = TABS[idx].render();
+function selectTab(idx) {
+  document.querySelectorAll('.tab-item').forEach((b, i) => b.classList.toggle('active', i === idx));
+  const main = document.getElementById('mainContent');
+  main.innerHTML = TABS[idx].render();
   
   if (TABS[idx].id === 'builder') {
-    populateBuilder();
+    initBuilderValues();
   }
 }
 
-function populateBuilder() {
-  const roleInput = document.getElementById('bRole');
-  const styleSelect = document.getElementById('bStyle');
-  const tasksInput = document.getElementById('bTasks');
-  const avoidInput = document.getElementById('bAvoid');
+function initBuilderValues() {
+  const roleInput = document.getElementById('cfgRole');
+  const styleSelect = document.getElementById('cfgStyle');
+  const tasksInput = document.getElementById('cfgTasks');
+  const avoidInput = document.getElementById('cfgAvoid');
   if (!roleInput) return;
 
-  roleInput.value = `${currentPerson.first} ${currentPerson.last} — ${currentPerson.role} chez Gestuel'Santé`;
-  if (currentPerson.pole === "Formateurs") {
+  roleInput.value = `${currentUser.first} ${currentUser.last} — ${currentUser.role} chez Gestuel'Santé`;
+  if (currentUser.pole === "Formateurs") {
     styleSelect.value = "direct, bienveillant, orienté terrain et sans jargon médical";
     tasksInput.value = "Rédiger des comptes-rendus d'intervention, concevoir des fiches d'échauffement, animer des ateliers TMS";
     avoidInput.value = "Pas de jargon médical opaque, pas de théorie abstraite, anonymiser les noms de stagiaires";
-  } else if (currentPerson.pole === "Marketing") {
+  } else if (currentUser.pole === "Marketing") {
     styleSelect.value = "chaleureux, percutant, valorisant le geste juste et le ROI santé";
     tasksInput.value = "Rédiger des posts LinkedIn, créer des newsletters, concevoir des supports de communication";
     avoidInput.value = "Pas de superlatifs creux, valoriser le geste juste et l'expertise kiné";
@@ -1208,15 +1030,15 @@ function populateBuilder() {
     tasksInput.value = "Gérer les conventions OPCO, relancer les dossiers de formation, synthétiser des cahiers des charges";
     avoidInput.value = "Pas de flou juridique, concision et conformité Caliopi/AKTO";
   }
-  updateCustomInstructions();
+  syncCustomInstructions();
 }
 
-function updateCustomInstructions() {
-  const role = document.getElementById('bRole')?.value || '';
-  const style = document.getElementById('bStyle')?.value || '';
-  const tasks = document.getElementById('bTasks')?.value || '';
-  const avoid = document.getElementById('bAvoid')?.value || '';
-  const out = document.getElementById('bOutput');
+function syncCustomInstructions() {
+  const role = document.getElementById('cfgRole')?.value || '';
+  const style = document.getElementById('cfgStyle')?.value || '';
+  const tasks = document.getElementById('cfgTasks')?.value || '';
+  const avoid = document.getElementById('cfgAvoid')?.value || '';
+  const out = document.getElementById('cfgOutput');
   if (!out) return;
 
   out.value = `# INSTRUCTIONS PERSONNALISÉES CLAUDE PRO
@@ -1236,20 +1058,27 @@ ${tasks}.
 - Privilégie toujours les formats concrets (listes d'actions, tableaux, livrables prêts à l'emploi).`;
 }
 
-function copyPromptText(btn) {
-  const container = btn.closest('.prompt-card, .card');
-  const textarea = container ? container.querySelector('textarea') : null;
+function copySnippet(btn) {
+  const card = btn.closest('.prompt-card, .bento-card');
+  const textarea = card ? card.querySelector('textarea') : null;
   if (!textarea) return;
   
   navigator.clipboard.writeText(textarea.value).then(() => {
-    const orig = btn.innerHTML;
-    btn.innerHTML = '✅ Copié !';
+    showToast();
+    const origHTML = btn.innerHTML;
+    btn.innerHTML = '<svg class="svg-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Copié !';
     btn.classList.add('copied');
     setTimeout(() => {
-      btn.innerHTML = orig;
+      btn.innerHTML = origHTML;
       btn.classList.remove('copied');
     }, 2000);
   });
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
 }
 
 window.addEventListener('DOMContentLoaded', initGate);

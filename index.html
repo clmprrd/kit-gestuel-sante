@@ -9,7 +9,7 @@
 :root {
   --navy: #090E17; --navy2: #0E1726; --navy3: #162238;
   --accent: #D97757; --accent-soft: #F2A285; --accent-glow: rgba(217,119,87,0.18);
-  --teal: #38BDF8; --cyan: #7DD3CC; --gold: #FBBF24; --green: #34D399; --red: #F87171;
+  --teal: #38BDF8; --cyan: #7DD3CC; --gold: #FBBF24; --green: #34D399; --red: #F87171; --purple: #A78BFA;
   --white: #FFFFFF; --soft: #CBD5E1; --muted: #7E92A8; --border: rgba(255,255,255,0.08);
   --card: #0F1A2A; --card-hover: #142338;
   --radius: 18px; --radius-sm: 12px;
@@ -28,7 +28,7 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 
-/* ══ GATE NOMINATIVE ══ */
+/* ══ GATE SCREEN ══ */
 #gate {
   min-height: 100vh;
   display: flex;
@@ -205,6 +205,7 @@ a { color: inherit; text-decoration: none; }
 .callout-teal { background: rgba(56,189,248,0.08); border-color: var(--teal); color: #BAE6FD; }
 .callout-red { background: rgba(248,113,113,0.08); border-color: var(--red); color: #FECACA; }
 .callout-green { background: rgba(52,211,153,0.08); border-color: var(--green); color: #A7F3D0; }
+.callout-purple { background: rgba(167,139,250,0.08); border-color: var(--purple); color: #DDD6FE; }
 
 .prompt-card {
   background: var(--card); border: 1px solid var(--border);
@@ -361,9 +362,9 @@ const TABS = [
             text: `Tu es mon assistant kinésithérapeute ergonome chez Gestuel'Santé. 
 
 Voici ma dictée vocale brute enregistrée après mon intervention en entreprise :
-\"\"\"
+"""
 [Collez ici votre enregistrement vocal transcrit]
-\"\"\"
+"""
 
 Rédige un compte-rendu d'intervention structuré :
 1. Cadre & contexte de l'intervention (Entreprise, date, poste observé).
@@ -374,7 +375,7 @@ Rédige un compte-rendu d'intervention structuré :
 Adopte un ton professionnel, clair, positif et accessible aux non-médecins.`
           },
           {
-            title: "🏃 Fiche Pratique : Échauffement 5 Min par Poste",
+            title: "🏃 Fiche Pratique : Échauffement 5 Min par Poste (Artifact)",
             desc: "Créez une fiche d'échauffement sur-mesure pour un poste spécifique (mise en carton, cariste, écran).",
             text: `Tu es ergonome expert en prévention des TMS chez Gestuel'Santé.
 
@@ -382,7 +383,7 @@ Conçois une routine d'échauffement et de réveil musculaire au poste de travai
 Métier cible : [Ex: Préparateur de commandes / Cariste / Travail sur écran]
 Temps alloué : 5 minutes
 
-Structure ta fiche en 5 exercices chronométrés :
+Structure ta fiche en 5 exercices chronométrés dans un Artifact propre et imprimable :
 - Exercice 1 : Réveil articulaire (1 min)
 - Exercice 2 : Mobilisation rachis lombaire / bassin (1 min)
 - Exercice 3 : Déverrouillage épaules & cervicales (1 min)
@@ -412,6 +413,17 @@ Points abordés durant la session : [Ex: 12 salariés formés, atelier manutenti
 Prochaine étape : Point de suivi à J+30.
 
 Ton : bienveillant, valorisant, engageant et orienté passage à l'action.`
+          },
+          {
+            title: "📋 Quiz d'Évaluation des Connaissances Début / Fin de Session",
+            desc: "Générez un QCM interactif de 5 questions pour mesurer la montée en compétences des stagiaires.",
+            text: `Conçois un QCM de 5 questions à choix multiples pour évaluer les connaissances des stagiaires sur les gestes et postures :
+Thématique : [Ex: Port de charges lourdes et protection du rachis lombaire].
+
+Pour chaque question :
+- La question concrète basée sur une situation réelle
+- 3 options (A, B, C) avec 1 seule réponse biomécaniquement juste
+- L'explication détaillée du bon geste après validation.`
           }
         ];
       } else if (isMkt) {
@@ -463,9 +475,9 @@ Inclus :
             title: "✍️ Réécriture de Témoignage Client en Étude de Cas",
             desc: "Transformez des retours d'évaluation en cas client inspirant.",
             text: `À partir des retours clients bruts suivants :
-\"\"\"
+"""
 [Collez les retours de fin de formation / citations]
-\"\"\"
+"""
 
 Rédige une mini étude de cas client (format avant / après) mettant en valeur l'expertise Gestuel'Santé et les résultats obtenus par les salariés.`
           }
@@ -489,9 +501,9 @@ Demande avec courtoisie et rigueur l'état d'avancement de l'accord avant la ten
             title: "📋 Synthèse de Cahier des Charges pour Appel d'Offres",
             desc: "Analysez un document de 20 pages et extrayez les exigences clés en 30 secondes.",
             text: `Analyse le document de consultation / cahier des charges suivant :
-\"\"\"
+"""
 [Collez l'extrait ou le texte du document]
-\"\"\"
+"""
 
 Synthétise en un tableau clair :
 1. Objectifs pédagogiques exigés par le client
@@ -510,9 +522,9 @@ Rappelle les consignes d'émargement, les horaires de la session, et la liste de
             title: "📊 Bilan d'Évaluation de Fin de Session (Qualiopi)",
             desc: "Analysez les notes de satisfaction pour générer le bilan statistique de formation.",
             text: `Voici les notes brutes des évaluations stagiaires de la session du [Date] chez [Client] :
-\"\"\"
+"""
 [Collez les notes et commentaires]
-\"\"\"
+"""
 
 Produis le bilan d'évaluation Qualiopi :
 - Taux de satisfaction global (%)
@@ -527,7 +539,7 @@ Produis le bilan d'évaluation Qualiopi :
         <div class="sec-head">
           <div class="sec-kicker">Espace Nominatif · ${currentPerson.first} ${currentPerson.last}</div>
           <h2 class="sec-title">${currentPerson.role}</h2>
-          <p class="sec-desc">Vos 4 prompts de production quotidienne. Cliquez sur <strong>📋 Copier</strong> et collez directement dans votre conversation Claude.ai.</p>
+          <p class="sec-desc">Vos prompts de production quotidienne. Cliquez sur <strong>📋 Copier</strong> et collez directement dans votre conversation Claude.ai.</p>
         </div>
 
         <div class="callout callout-teal">
@@ -546,7 +558,7 @@ Produis le bilan d'évaluation Qualiopi :
               <textarea class="prompt-text" readonly>${p.text}</textarea>
             </div>
           </div>
-        `).join()}
+        `).join('')}
       `;
     }
   },
@@ -703,7 +715,7 @@ Tu es le rédacteur expert des comptes-rendus d'intervention pour Gestuel'Santé
 
 ## RÈGLES D'OR
 - Langage direct, clair, professionnel et accessible aux non-médecins.
-- Anonymiser strictement les noms des opérateurs (utiliser \"Opérateur poste 1\", \"Préparateur ligne A\").</textarea>
+- Anonymiser strictement les noms des opérateurs (utiliser "Opérateur poste 1", "Préparateur ligne A").</textarea>
           </div>
         </div>
 
@@ -736,7 +748,7 @@ Pour chaque routine demandée par métier :
 3. Pour chaque exercice :
    - Schéma textuel / posture de départ
    - Consigne pas à pas en 2 phrases
-   - Point de sécurité (\"Ne jamais cambrer le dos\")
+   - Point de sécurité ("Ne jamais cambrer le dos")
    - Sensation recherchée
 
 ## STYLE VISUEL
@@ -810,7 +822,7 @@ Chaque post doit respecter la trame narrative en 5 temps :
 
 ## RÈGLES ÉDITORIALES
 - Phrases courtes, saut de ligne entre chaque idée.
-- Zéro mot marketing creux (\"révolutionnaire\", \"innovant\", \"au cœur de\").
+- Zéro mot marketing creux ("révolutionnaire", "innovant", "au cœur de").
 - Ton bienveillant, expert et axé sur l'action concrète.</textarea>
           </div>
         </div>
@@ -880,8 +892,60 @@ Tu es assistant de gestion administrative chez Gestuel'Santé. Tu rédiges des c
     }
   },
   {
+    id: "prompting",
+    label: "⚡ 5. Méthodes de Prompting & Raccourcis",
+    render: () => {
+      return `
+        <div class="sec-head">
+          <div class="sec-kicker">L'Art du Prompting Professionnel</div>
+          <h2 class="sec-title">La Méthode RCTE & Les Balises Structurantes</h2>
+          <p class="sec-desc">Pour obtenir 100% de pertinence dès le premier coup, structurez vos prompts avec les 4 piliers fondamentaux.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h4>📐 Le Framework RCTE (La Formule d'Or)</h4>
+            <p style="margin-bottom:8px;"><strong>1. Rôle (R) :</strong> Définissez qui est Claude (<em>« Tu es kiné ergonome consultant pour Gestuel'Santé »</em>).</p>
+            <p style="margin-bottom:8px;"><strong>2. Contexte (C) :</strong> Donnez le décor (<em>« Nous intervenons chez un logisticien de 150 salariés avec 40% de port de charges »</em>).</p>
+            <p style="margin-bottom:8px;"><strong>3. Tâche (T) :</strong> Décrivez l'action exacte (<em>« Rédige un protocole d'échauffement de 5 minutes »</em>).</p>
+            <p><strong>4. Exigences (E) :</strong> Fixez le format de sortie (<em>« Tableau 4 colonnes, zéro jargon médical, ton bienveillant »</em>).</p>
+          </div>
+
+          <div class="card">
+            <h4>⌨️ Raccourcis Clavier Essentiels Claude</h4>
+            <p style="margin-bottom:8px;"><strong>Nouveau Chat instantané :</strong> <code>Ctrl + K</code> (Win) ou <code>Cmd + K</code> (Mac).</p>
+            <p style="margin-bottom:8px;"><strong>Saut de ligne sans envoyer :</strong> <code>Shift + Entrée</code>.</p>
+            <p style="margin-bottom:8px;"><strong>Basculer dans les Artifacts :</strong> Cliquez sur l'icône fenêtre en haut à droite.</p>
+            <p><strong>Application Bureau globale :</strong> <code>Option + Espace</code> (Mac) ou <code>Alt + Espace</code> (Win) pour ouvrir Claude partout.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:20px;">
+          <h4>🏷️ La Puissance des Balises Structurantes</h4>
+          <p style="margin-bottom:12px;">Utilisez des séparateurs clairs pour isoler vos données de vos consignes. Claude comprend instantanément la structure :</p>
+          <div class="prompt-box">
+            <textarea class="prompt-text" style="min-height:140px;" readonly>Tu es rédacteur pour Gestuel'Santé.
+
+Voici le contexte de la session :
+<contexte>
+Entreprise : Agroalimentaire 200 personnes. Postes de travail statiques au froid.
+</contexte>
+
+Voici les retours bruts des salariés :
+<retours_bruts>
+- "On a mal aux épaules en fin de journée"
+- "La routine du matin nous fait du bien"
+</retours_bruts>
+
+Produis 3 préconisations ergonomiques prioritaires.</textarea>
+          </div>
+        </div>
+      `;
+    }
+  },
+  {
     id: "modeles",
-    label: "🤖 5. Les Modèles Claude",
+    label: "🤖 6. Les Modèles Claude",
     render: () => {
       return `
         <div class="sec-head">
@@ -909,7 +973,7 @@ Tu es assistant de gestion administrative chez Gestuel'Santé. Tu rédiges des c
   },
   {
     id: "securite",
-    label: "🔒 6. Sécurité & RGPD Santé",
+    label: "🔒 7. Sécurité & RGPD Santé",
     render: () => {
       return `
         <div class="sec-head">
@@ -933,8 +997,36 @@ Tu es assistant de gestion administrative chez Gestuel'Santé. Tu rédiges des c
     }
   },
   {
+    id: "plan",
+    label: "🚀 8. Plan d'Action J+1 à J+30",
+    render: () => {
+      return `
+        <div class="sec-head">
+          <div class="sec-kicker">Ancrage Pédagogique Durable</div>
+          <h2 class="sec-title">La Routine 10 Minutes Quotidienne</h2>
+          <p class="sec-desc">Pour que la formation transforme réellement vos pratiques, appliquez cette routine dès demain matin.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h4>📅 Semaine 1 : Le Réflexe Dictée Vocale</h4>
+            <p>Testez la dictée vocale après chaque intervention terrain. Prenez 2 minutes au smartphone et laissez Claude générer votre premier jet de compte-rendu.</p>
+          </div>
+          <div class="card">
+            <h4>📁 Semaine 2 : L'Espace Projet Équipe</h4>
+            <p>Déposez vos 3 fichiers de référence dans vos Projets Claude d'équipe. Lancez vos conversations uniquement dans le Projet dédié.</p>
+          </div>
+          <div class="card">
+            <h4>🚀 Semaine 3 & 4 : Automatisation & Partage</h4>
+            <p>Partagez vos meilleurs prompts et fiches mémos créées lors des réunions d'équipe pour enrichir la mémoire collective Gestuel'Santé.</p>
+          </div>
+        </div>
+      `;
+    }
+  },
+  {
     id: "liens",
-    label: "🔗 7. Liens & Outils Clés",
+    label: "🔗 9. Liens & Outils Clés",
     render: () => {
       return `
         <div class="sec-head">

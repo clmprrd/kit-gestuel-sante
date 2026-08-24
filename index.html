@@ -150,7 +150,7 @@ a { color: inherit; text-decoration: none; }
 .tabs-wrap::-webkit-scrollbar { display: none; }
 .tab-btn {
   background: none; border: none; color: var(--muted); font-family: inherit; font-size: 12px;
-  font-weight: 600; padding: 14px 14px; cursor: pointer; border-bottom: 2.5px solid transparent;
+  font-weight: 600; padding: 14px 16px; cursor: pointer; border-bottom: 2.5px solid transparent;
   white-space: nowrap; transition: .2s; letter-spacing: .2px;
 }
 .tab-btn:hover { color: var(--soft); }
@@ -205,20 +205,20 @@ a { color: inherit; text-decoration: none; }
 
 /* ══ FORMULAIRE INTERACTIF D'INSTRUCTIONS ══ */
 .builder-box {
-  background: linear-gradient(145deg, rgba(217,119,87,0.06), var(--card));
-  border: 1px solid rgba(217,119,87,0.25); border-radius: var(--radius); padding: 24px; margin-bottom: 24px;
+  background: linear-gradient(145deg, rgba(217,119,87,0.08), var(--card));
+  border: 1px solid rgba(217,119,87,0.3); border-radius: var(--radius); padding: 24px; margin-bottom: 24px;
 }
 .builder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
 .b-field label { display: block; font-size: 11px; font-weight: 600; color: var(--soft); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
 .b-field input, .b-field select, .b-field textarea {
   width: 100%; background: var(--navy); border: 1px solid var(--border); color: #fff;
-  font-family: inherit; font-size: 13px; padding: 9px 12px; border-radius: 8px; outline: none; transition: .2s;
+  font-family: inherit; font-size: 13px; padding: 10px 12px; border-radius: 8px; outline: none; transition: .2s;
 }
 .b-field input:focus, .b-field select:focus, .b-field textarea:focus { border-color: var(--accent); }
 .b-full { grid-column: 1 / -1; }
 .gen-btn {
   background: var(--accent); color: #fff; border: none; font-family: inherit; font-size: 13px;
-  font-weight: 700; padding: 11px 20px; border-radius: 8px; cursor: pointer; transition: .2s;
+  font-weight: 700; padding: 12px 24px; border-radius: 8px; cursor: pointer; transition: .2s;
 }
 .gen-btn:hover { background: var(--accent-soft); }
 
@@ -260,13 +260,12 @@ a { color: inherit; text-decoration: none; }
   <nav class="tabs-wrap">
     <button class="tab-btn active" onclick="showTab('tab-perso')">🎯 1. Mon Espace Métier</button>
     <button class="tab-btn" onclick="showTab('tab-custom-builder')">⚙️ 2. Générateur d'Instructions</button>
-    <button class="tab-btn" onclick="showTab('tab-methodes')">⚡ 3. Méthodes de Prompting</button>
-    <button class="tab-btn" onclick="showTab('tab-projects')">📁 4. Projets Claude (Mémoire)</button>
-    <button class="tab-btn" onclick="showTab('tab-skills')">🧩 5. Compétences (Skills)</button>
-    <button class="tab-btn" onclick="showTab('tab-modeles')">🤖 6. Les Modèles Claude</button>
-    <button class="tab-btn" onclick="showTab('tab-connecteurs')">🔌 7. Connecteurs & Cowork</button>
-    <button class="tab-btn" onclick="showTab('tab-securite')">🔒 8. Sécurité & RGPD Santé</button>
-    <button class="tab-btn" onclick="showTab('tab-liens')">🔗 9. Annuaire de Liens Utiles</button>
+    <button class="tab-btn" onclick="showTab('tab-projects')">📁 3. Les Projets Claude</button>
+    <button class="tab-btn" onclick="showTab('tab-skills')">🧩 4. Les Compétences (Skills)</button>
+    <button class="tab-btn" onclick="showTab('tab-modeles')">🤖 5. Les Modèles Claude</button>
+    <button class="tab-btn" onclick="showTab('tab-connecteurs')">🔌 6. Connecteurs & Cowork</button>
+    <button class="tab-btn" onclick="showTab('tab-securite')">🔒 7. Sécurité & RGPD Santé</button>
+    <button class="tab-btn" onclick="showTab('tab-liens')">🔗 8. Liens & Outils</button>
   </nav>
 
   <main class="main-wrap">
@@ -277,7 +276,7 @@ a { color: inherit; text-decoration: none; }
       <div class="sec-head">
         <div class="sec-kicker">Prompts Métiers Prêts à l'Emploi</div>
         <h2 class="sec-title">Vos cas d'usage quotidiens prioritaires</h2>
-        <p class="sec-desc">Copiez le texte, collez-le dans Claude et complétez les informations entre crochets.</p>
+        <p class="sec-desc">Copiez le texte d'un clic, collez-le dans Claude et complétez les informations entre crochets.</p>
       </div>
       <div class="grid-2" id="persoPrompts"></div>
     </div>
@@ -285,16 +284,16 @@ a { color: inherit; text-decoration: none; }
     <!-- 2. GÉNÉRATEUR D'INSTRUCTIONS PERSONNALISÉES -->
     <div id="tab-custom-builder" class="tab-pane">
       <div class="sec-head">
-        <div class="sec-kicker">Réglages du Compte (Settings > Capabilities > Custom Instructions)</div>
+        <div class="sec-kicker">Paramétrage du Compte (Settings > Capabilities > Custom Instructions)</div>
         <h2 class="sec-title">Générateur d'Instructions Personnalisées</h2>
-        <p class="sec-desc">Remplissez les champs ci-dessous et cliquez sur Générer pour créer le bloc parfait à coller dans votre compte Claude.</p>
+        <p class="sec-desc">Vos informations sont déjà pré-remplies selon votre profil. Ajustez si besoin et cliquez sur Générer pour créer le bloc parfait à coller dans votre compte Claude.</p>
       </div>
 
       <div class="builder-box">
         <div class="builder-grid">
           <div class="b-field">
             <label>Votre Rôle & Métier chez Gestuel'Santé</label>
-            <input type="text" id="bRole" placeholder="Ex: Kinésithérapeute formateur TMS / Responsable Marketing / Assistante">
+            <input type="text" id="bRole">
           </div>
           <div class="b-field">
             <label>Votre Style Rédactionnel Souhaité</label>
@@ -306,11 +305,11 @@ a { color: inherit; text-decoration: none; }
           </div>
           <div class="b-field b-full">
             <label>Vos Tâches Principales Récurrentes</label>
-            <input type="text" id="bTasks" placeholder="Ex: Rédiger des comptes-rendus d'intervention, concevoir des fiches d'échauffement, analyser des postes">
+            <input type="text" id="bTasks">
           </div>
           <div class="b-field b-full">
             <label>Contraintes & Ce que Claude doit éviter</label>
-            <input type="text" id="bAvoid" placeholder="Ex: Pas de jargon médical opaque, pas de théorie abstraite, anonymiser les noms de stagiaires">
+            <input type="text" id="bAvoid">
           </div>
         </div>
         <button class="gen-btn" onclick="generateCustomInstructions()">⚡ Générer mes Instructions Personnalisées</button>
@@ -328,71 +327,7 @@ a { color: inherit; text-decoration: none; }
       </div>
     </div>
 
-    <!-- 3. MÉTHODES DE PROMPTING -->
-    <div id="tab-methodes" class="tab-pane">
-      <div class="sec-head">
-        <div class="sec-kicker">Bonnes Pratiques de Prompting</div>
-        <h2 class="sec-title">Les 3 Méthodes de Prompting Clés</h2>
-        <p class="sec-desc">Structurez vos demandes en langage clair pour obtenir un livrable parfait du premier coup.</p>
-      </div>
-
-      <div class="grid-3">
-        <div class="card">
-          <div class="prompt-header">
-            <span class="prompt-tag">Méthode 1 · Le Rôle & Contexte</span>
-            <button class="copy-btn" onclick="copyText(this)">Copier</button>
-          </div>
-          <h4>La Trame en 4 Piliers</h4>
-          <p style="margin-bottom:8px;">Donne à Claude son rôle, la situation, les étapes et le format attendu.</p>
-          <div class="prompt-box">
-            <textarea class="prompt-text" readonly>Tu es formateur consultant kiné chez Gestuel'Santé.
-Contexte : Nous venons de réaliser une formation pour l'entreprise [NOM].
-Consignes :
-1. Rédige le compte-rendu d'intervention selon notre trame habituelle.
-2. Dégage 3 points forts observés et 3 axes d'amélioration biomécaniques.
-3. Reste ultra-concret, sans jargon médical.
-
-Voici mes notes de terrain :
-[COLLER VOS NOTES]</textarea>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="prompt-header">
-            <span class="prompt-tag">Méthode 2 · Le Brain Dump Vocal</span>
-            <button class="copy-btn" onclick="copyText(this)">Copier</button>
-          </div>
-          <h4>Du Dictaphone au Rapport</h4>
-          <p style="margin-bottom:8px;">Pour trier 2 minutes de dictée orale brute en sortant de réunion client.</p>
-          <div class="prompt-box">
-            <textarea class="prompt-text" readonly>Voici la transcription brute de ma dictée vocale après mon intervention :
-[COLLER LA DICTÉE]
-
-Restructure ce flux en :
-1. Fiche d'intervention (Poste, Opérateurs concernés, Date).
-2. Constats biomécaniques relevés.
-3. Ateliers pratiques réalisés avec l'équipe.
-4. Synthèse des préconisations pour le responsable HSE.</textarea>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="prompt-header">
-            <span class="prompt-tag">Méthode 3 · Plan d'abord</span>
-            <button class="copy-btn" onclick="copyText(this)">Copier</button>
-          </div>
-          <h4>Le Cadrage Étape par Étape</h4>
-          <p style="margin-bottom:8px;">Évite que Claude ne rédige tout d'un coup sans validation préalable.</p>
-          <div class="prompt-box">
-            <textarea class="prompt-text" readonly>Nous devons bâtir un atelier de prévention sur-mesure pour [CLIENT / MÉTIER].
-Étape 1 : Propose uniquement le plan de l'atelier en 4 séquences et attends ma validation.
-Ne rédige pas le contenu détaillé tant que je n'ai pas validé la trame.</textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. LES PROJETS CLAUDE -->
+    <!-- 3. LES PROJETS CLAUDE -->
     <div id="tab-projects" class="tab-pane">
       <div class="sec-head">
         <div class="sec-kicker">Mémoire d'Équipe & Base Documentaire (200k tokens)</div>
@@ -407,7 +342,7 @@ Ne rédige pas le contenu détaillé tant que je n'ai pas validé la trame.</tex
       <div class="grid-2" id="projectsGrid"></div>
     </div>
 
-    <!-- 5. COMPÉTENCES (SKILLS) -->
+    <!-- 4. COMPÉTENCES (SKILLS) -->
     <div id="tab-skills" class="tab-pane">
       <div class="sec-head">
         <div class="sec-kicker">Écosystème Claude Pro (claude.com/fr/skills)</div>
@@ -431,7 +366,7 @@ Ne rédige pas le contenu détaillé tant que je n'ai pas validé la trame.</tex
       </div>
     </div>
 
-    <!-- 6. LES MODÈLES CLAUDE -->
+    <!-- 5. LES MODÈLES CLAUDE -->
     <div id="tab-modeles" class="tab-pane">
       <div class="sec-head">
         <div class="sec-kicker">Comprendre le moteur sous le capot</div>
@@ -455,7 +390,7 @@ Ne rédige pas le contenu détaillé tant que je n'ai pas validé la trame.</tex
       </div>
     </div>
 
-    <!-- 7. CONNECTEURS & COWORK -->
+    <!-- 6. CONNECTEURS & COWORK -->
     <div id="tab-connecteurs" class="tab-pane">
       <div class="sec-head">
         <div class="sec-kicker">Interconnexion des outils</div>
@@ -475,7 +410,7 @@ Ne rédige pas le contenu détaillé tant que je n'ai pas validé la trame.</tex
       </div>
     </div>
 
-    <!-- 8. SÉCURITÉ & RGPD SANTÉ -->
+    <!-- 7. SÉCURITÉ & RGPD SANTÉ -->
     <div id="tab-securite" class="tab-pane">
       <div class="sec-head">
         <div class="sec-kicker">Réglementation & Secret Médical</div>
@@ -496,7 +431,7 @@ Ne rédige pas le contenu détaillé tant que je n'ai pas validé la trame.</tex
       </div>
     </div>
 
-    <!-- 9. ANNUAIRE DE LIENS UTILES -->
+    <!-- 8. LIENS & OUTILS -->
     <div id="tab-liens" class="tab-pane">
       <div class="sec-head">
         <div class="sec-kicker">Ressources & Accès Directs</div>
@@ -677,6 +612,9 @@ function selectPerson(id) {
     document.getElementById('bAvoid').value = "Pas de flou juridique, concision et conformité Caliopi/AKTO";
   }
   
+  // Auto generate once so they see the result immediately
+  generateCustomInstructions();
+
   renderPerso();
   renderProjects();
 }
@@ -739,7 +677,6 @@ function generateCustomInstructions() {
 
   document.getElementById('customOutput').value = result;
   document.getElementById('customResultCard').style.display = 'block';
-  document.getElementById('customResultCard').scrollIntoView({ behavior: 'smooth' });
 }
 
 function copyText(btn) {

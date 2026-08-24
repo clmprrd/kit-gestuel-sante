@@ -941,8 +941,8 @@ Tu es assistant de gestion administrative chez Gestuel'Santé. Tu rédiges des c
         </div>
 
         <div class="card" style="margin-top:20px;">
-          <h4>🏷️ La Puissance des Balises Structurantes</h4>
-          <p style="margin-bottom:12px;">Utilisez des séparateurs clairs pour isoler vos données de vos consignes. Claude comprend instantanément la structure :</p>
+          <h4>🏷️ La Puissance des Balises Structurantes (Best Practice Reddit & Anthropic)</h4>
+          <p style="margin-bottom:12px;">Utilisez des balises claires pour séparer vos données brutes de vos consignes. Claude comprend instantanément la hiérarchie :</p>
           <div class="prompt-box">
             <textarea class="prompt-text" style="min-height:140px;" readonly>Tu es rédacteur pour Gestuel'Santé.
 
@@ -1085,13 +1085,13 @@ Produis 3 préconisations ergonomiques prioritaires.</textarea>
   },
   {
     id: "ressources",
-    label: "📚 10. Ressources & Contacts",
+    label: "📚 10. Ressources, Veille & Contacts",
     render: () => {
       return `
         <div class="sec-head">
           <div class="sec-kicker">Ressources Officielles & Contacts Formateurs</div>
           <h2 class="sec-title">Pour Aller Plus Loin Après la Session</h2>
-          <p class="sec-desc">Toutes les ressources pour continuer à vous former gratuitement et rester en contact avec Axem IA.</p>
+          <p class="sec-desc">Toutes les ressources vérifiées (Reddit r/ClaudeAI, YouTube, X, Certifications) pour continuer à vous former gratuitement.</p>
         </div>
 
         <div style="background:linear-gradient(135deg,rgba(217,119,87,.16),rgba(14,25,38,.4));border:1px solid rgba(217,119,87,.45);border-radius:16px;padding:22px;margin-bottom:26px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;">
@@ -1107,19 +1107,26 @@ Produis 3 préconisations ergonomiques prioritaires.</textarea>
           </div>
         </div>
 
-        <div class="grid-2">
+        <div class="grid-3">
           <div class="card">
-            <h4>🎓 Formations & Certifications Gratuites</h4>
+            <h4>🎓 Certifications Gratuites</h4>
             <p style="margin-bottom:8px;"><a href="https://grow.google/intl/fr/ai-trainings/" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Google AI Essentials</a> — Certification pratique sur l'IA au travail (~10h).</p>
-            <p style="margin-bottom:8px;"><a href="https://elementsofai.fr" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Elements of AI (Univ. Helsinki)</a> — Cours d'introduction européen reconnu (~20h).</p>
-            <p style="margin-bottom:8px;"><a href="https://openclassrooms.com" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Objectif IA (OpenClassrooms)</a> — Les fondamentaux en français (5h).</p>
+            <p style="margin-bottom:8px;"><a href="https://elementsofai.fr" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Elements of AI (Univ. Helsinki)</a> — Cours européen reconnu (~20h).</p>
+            <p><a href="https://openclassrooms.com" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Objectif IA (OpenClassrooms)</a> — Les fondamentaux en français (5h).</p>
           </div>
 
           <div class="card">
-            <h4>🎙️ Podcasts & Veille Recommandée</h4>
+            <h4>🎙️ Podcasts & Vidéos IA</h4>
             <p style="margin-bottom:8px;"><a href="https://youtube.com/@Underscore_" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Underscore_ / Micode</a> — Talk-show tech et IA francophone.</p>
-            <p style="margin-bottom:8px;"><a href="https://generationia-asso.fr" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Génération IA</a> — Podcast et décryptages des usages concrets de l'IA.</p>
-            <p style="margin-bottom:8px;"><a href="https://youtube.com/@monsieur_ia" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Monsieur IA (YouTube)</a> — Tutoriels et actualités pratiques.</p>
+            <p style="margin-bottom:8px;"><a href="https://generationia-asso.fr" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Génération IA</a> — Podcast des usages concrets de l'IA.</p>
+            <p><a href="https://youtube.com/@monsieur_ia" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Monsieur IA (YouTube)</a> — Tutoriels et actualités pratiques.</p>
+          </div>
+
+          <div class="card">
+            <h4>🌐 Communautés & Veille</h4>
+            <p style="margin-bottom:8px;"><a href="https://reddit.com/r/ClaudeAI" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Reddit r/ClaudeAI</a> — Retours d'expérience et astuces d'experts mondiaux.</p>
+            <p style="margin-bottom:8px;"><a href="https://x.com/alexalbert__" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Alex Albert (Anthropic Dev Rel sur X)</a> — Annonces officielles et prompts.</p>
+            <p><a href="https://docs.anthropic.com/en/prompt-library/library" target="_blank" style="color:var(--accent-soft); text-decoration:underline;">↗ Anthropic Prompt Library</a> — Bibliothèque officielle de compétences.</p>
           </div>
         </div>
       `;

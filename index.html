@@ -7,15 +7,39 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 :root {
- --navy:#F4EDDF; --navy2:#FAF6EE; --navy3:#EFE5D2;
- --accent:#C4603F; --accent-soft:#DA7757; --accent-deep:#9C4A2E;
- --teal:#C4603F; --cyan:#DA7757;
- --gold:#A8842F; --green:#6E8459; --red:#B4442E; --white:#1A1A1A;
- --muted:#8A7F72; --soft:#5A5249; --border:#E0D4BE; --card:#FAF6EE;
- --radius:18px; --radius-sm:12px;
- --ease:cubic-bezier(.16,1,.3,1);
- --shadow:0 18px 40px -28px rgba(60,45,30,.28), 0 2px 6px -3px rgba(60,45,30,.10);
- --shadow-accent:0 16px 34px -24px rgba(196,96,63,.30);
+ /* --- surface de LECTURE --- */
+ --paper:#F1E9DA;      /* la page */
+ --sheet:#FFFDF8;      /* la feuille posee dessus */
+ --ink:#23201B;        /* 13.45 sur page · 15.97 sur feuille */
+ --ink-2:#554D42;      /* 6.89 · 8.18 */
+ --rule:#DED2BA;       /* filets, jamais du texte */
+ --rule-2:#EBE1CD;
+
+ /* --- surface OUTIL : tout ce qui se copie --- */
+ --tool:#1C1814;
+ --tool-ink:#EFE6D5;   /* 14.24 sur outil */
+ --tool-dim:#9C9184;   /* 5.71 */
+ --tool-acc:#E8875F;   /* 6.77 */
+
+ /* --- accents, verifies AA sur les deux surfaces --- */
+ --coral:#A34724;      /* 5.00 sur page · 5.93 sur feuille */
+ --coral-hi:#C05A31;   /* survol seulement */
+ --sage:#4E5C41;       /* 5.94 · 7.05 */
+
+ /* alias de compatibilite : le fichier appelle encore les anciens noms */
+ --navy:var(--paper); --navy2:var(--sheet); --navy3:var(--rule-2);
+ --accent:var(--coral); --accent-soft:var(--coral-hi); --accent-deep:var(--coral);
+ --teal:var(--coral); --cyan:var(--coral-hi);
+ --white:var(--ink); --soft:var(--ink-2); --muted:var(--ink-2);
+ --border:var(--rule); --card:var(--sheet);
+ --gold:#7A5B14; --green:var(--sage); --red:#9B3A22;
+
+ /* --- rythme : base 8 --- */
+ --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px;
+ --radius:10px; --radius-sm:7px;
+ --ease:cubic-bezier(.2,.7,.3,1);
+ --shadow:0 1px 2px rgba(35,32,27,.05), 0 12px 28px -20px rgba(35,32,27,.22);
+ --shadow-accent:0 10px 24px -18px rgba(163,71,36,.35);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{max-width:100%;overflow-x:hidden}
@@ -83,8 +107,8 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 .sec-badge{display:inline-block;background:rgba(196,96,63,.08);color:var(--accent-soft);font-size:10px;font-weight:600;padding:4px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.7px;margin-top:10px;border:1px solid rgba(196,96,63,.18);font-family:'JetBrains Mono',monospace}
 .job-context-bar{background:rgba(111,181,140,.06);border:1px solid rgba(111,181,140,.22);border-left:3px solid var(--green);border-radius:var(--radius-sm);padding:13px 17px;margin-bottom:22px;display:flex;align-items:center;gap:13px}
 .job-context-bar .jcb-icon{font-size:20px;flex-shrink:0}
-.job-context-bar .jcb-text{font-size:12.5px;color:#A6D9BE;line-height:1.55}
-.job-context-bar .jcb-text strong{color:#C9ECD7;font-weight:700}
+.job-context-bar .jcb-text{font-size:12.5px;color:var(--sage);line-height:1.55}
+.job-context-bar .jcb-text strong{color:var(--sage);font-weight:700}
 /* PROMPTS */
 .prompts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:17px}
 .prompt-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;transition:transform .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease)}
@@ -98,7 +122,7 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 .copy-btn{background:var(--navy3);border:1px solid var(--border);color:var(--soft);padding:6px 15px;border-radius:8px;cursor:pointer;font-size:11px;font-weight:600;transition:transform .3s var(--ease),background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);font-family:inherit;letter-spacing:.3px}
 .copy-btn:hover{background:rgba(196,96,63,.12);color:var(--white);border-color:rgba(196,96,63,.45)}
 .copy-btn:active{transform:scale(.95)}
-.copy-btn.copied{background:rgba(111,181,140,.18);color:#C9ECD7;border-color:rgba(111,181,140,.5)}
+.copy-btn.copied{background:rgba(111,181,140,.18);color:var(--sage);border-color:rgba(111,181,140,.5)}
 .cat-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:1.4px;margin:34px 0 15px;display:flex;align-items:center;gap:12px}
 .cat-label::after{content:'';flex:1;height:1px;background:var(--border)}
 /* PERSO */
@@ -139,8 +163,8 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 /* EXO BANNER */
 .exo-banner{background:rgba(111,181,140,.06);border:1px solid rgba(111,181,140,.22);border-left:3px solid var(--green);border-radius:var(--radius-sm);padding:17px 20px;margin-bottom:26px;display:flex;gap:15px;align-items:flex-start}
 .exo-banner-icon{font-size:22px;flex-shrink:0}
-.exo-banner-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#A6D9BE;margin-bottom:5px}
-.exo-banner-desc{font-size:12.5px;color:#8FC2A6;line-height:1.55}
+.exo-banner-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--sage);margin-bottom:5px}
+.exo-banner-desc{font-size:12.5px;color:var(--sage);line-height:1.55}
 /* RESOURCES */
 .resource-section{margin-bottom:34px}
 .resource-section h3{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--accent-soft);margin-bottom:14px;display:flex;align-items:center;gap:9px;letter-spacing:-.2px}
@@ -176,14 +200,14 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 /* SECURITE CARDS */
 .sec-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:22px}
 .danger-card{background:rgba(208,138,138,.05);border:1px solid rgba(208,138,138,.22);border-left:3px solid var(--red);border-radius:var(--radius-sm);padding:18px 20px}
-.danger-card h4{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#E6A9A9;margin-bottom:11px}
+.danger-card h4{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--red);margin-bottom:11px}
 .danger-card ul{list-style:none;margin:0;padding:0}
-.danger-card li{font-size:12px;color:#D6B3B3;line-height:1.65;padding-left:20px;position:relative;margin-bottom:5px}
+.danger-card li{font-size:12px;color:var(--red);line-height:1.65;padding-left:20px;position:relative;margin-bottom:5px}
 .danger-card li::before{content:'';position:absolute;left:0;font-size:11px}
 .safe-card{background:rgba(111,181,140,.06);border:1px solid rgba(111,181,140,.22);border-left:3px solid var(--green);border-radius:var(--radius-sm);padding:18px 20px}
-.safe-card h4{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#A6D9BE;margin-bottom:11px}
+.safe-card h4{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--sage);margin-bottom:11px}
 .safe-card ul{list-style:none;margin:0;padding:0}
-.safe-card li{font-size:12px;color:#9DC9AE;line-height:1.65;padding-left:20px;position:relative;margin-bottom:5px}
+.safe-card li{font-size:12px;color:var(--sage);line-height:1.65;padding-left:20px;position:relative;margin-bottom:5px}
 .safe-card li::before{content:'';position:absolute;left:0;font-size:11px}
 .info-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius-sm);padding:18px 20px}
 .info-card h4{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--accent-soft);margin-bottom:11px}
@@ -191,8 +215,8 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 .info-card ul{margin:7px 0 0 18px;padding:0}
 .info-card li{font-size:12px;color:var(--soft);line-height:1.65;margin-bottom:5px}
 .gold-note{background:rgba(203,168,94,.06);border:1px solid rgba(203,168,94,.24);border-left:3px solid var(--gold);border-radius:var(--radius-sm);padding:18px 20px;margin-top:8px}
-.gold-note h4{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#E4C988;margin-bottom:7px}
-.gold-note p{font-size:12px;color:#D8C49B;line-height:1.65}
+.gold-note h4{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--gold);margin-bottom:7px}
+.gold-note p{font-size:12px;color:var(--gold);line-height:1.65}
 .beforeafter{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 @media(max-width:700px){.beforeafter{grid-template-columns:1fr}}
 /* GUIDE ÉTAPES */
@@ -214,18 +238,18 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 .guide-steps li::before{counter-increment:gstep;content:counter(gstep);position:absolute;left:12px;top:11px;width:24px;height:24px;border-radius:50%;background:rgba(196,96,63,.14);color:var(--accent);font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 .guide-steps li strong{color:var(--white)}
 .guide-test{background:rgba(203,168,94,.07);border:1px solid rgba(203,168,94,.26);border-left:3px solid var(--gold);border-radius:var(--radius-sm);padding:13px 18px;margin:6px 0 12px}
-.guide-test .gt-label{font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:600;color:#E4C988;margin-bottom:7px}
+.guide-test .gt-label{font-family:'Space Grotesk',sans-serif;font-size:12.5px;font-weight:600;color:var(--gold);margin-bottom:7px}
 .guide-test ul{list-style:none;margin:0;padding:0}
-.guide-test li{font-size:12px;color:#D8C49B;line-height:1.6;padding-left:22px;position:relative;margin-bottom:4px}
+.guide-test li{font-size:12px;color:var(--gold);line-height:1.6;padding-left:22px;position:relative;margin-bottom:4px}
 .guide-test li::before{content:'';position:absolute;left:0;font-size:11px}
 .guide-trap{background:rgba(208,138,138,.06);border:1px solid rgba(208,138,138,.24);border-left:3px solid var(--red);border-radius:var(--radius-sm);padding:13px 18px;margin:0 0 12px;display:flex;gap:11px;align-items:flex-start}
 .guide-trap .gtr-icon{font-size:16px;flex-shrink:0}
-.guide-trap .gtr-text{font-size:12.5px;color:#E0B4B4;line-height:1.55}
-.guide-trap .gtr-text strong{color:#F0C9C9}
+.guide-trap .gtr-text{font-size:12.5px;color:var(--red);line-height:1.55}
+.guide-trap .gtr-text strong{color:var(--red)}
 .guide-win{background:rgba(111,181,140,.08);border:1px solid rgba(111,181,140,.28);border-left:3px solid var(--green);border-radius:var(--radius-sm);padding:13px 18px;margin:0 0 4px;display:flex;gap:11px;align-items:flex-start}
 .guide-win .gwn-icon{font-size:18px;flex-shrink:0}
-.guide-win .gwn-text{font-size:12.5px;color:#A6D9BE;line-height:1.55}
-.guide-win .gwn-text strong{color:#C9ECD7}
+.guide-win .gwn-text{font-size:12.5px;color:var(--sage);line-height:1.55}
+.guide-win .gwn-text strong{color:var(--sage)}
 /* STATIONS */
 .station{background:linear-gradient(160deg,rgba(196,96,63,.04),rgba(250,246,238,.15));border:1px solid var(--border);border-radius:var(--radius);padding:22px 22px 8px;margin-bottom:22px}
 .station-head{display:flex;align-items:center;gap:13px;margin-bottom:6px;padding-bottom:14px;border-bottom:1px solid var(--border)}
@@ -233,7 +257,7 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 .station-head .st-name{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;letter-spacing:-.3px}
 .station-head .st-sub{font-size:12px;color:var(--muted);margin-top:2px}
 .station-intro{font-size:12.5px;color:var(--soft);line-height:1.6;margin:14px 0 14px}
-.test-flag{display:inline-block;background:rgba(203,168,94,.14);color:#E4C988;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;padding:2px 8px;border-radius:5px;letter-spacing:.4px;margin-left:6px;vertical-align:middle}
+.test-flag{display:inline-block;background:rgba(203,168,94,.14);color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;padding:2px 8px;border-radius:5px;letter-spacing:.4px;margin-left:6px;vertical-align:middle}
 .atelier-hero{background:linear-gradient(135deg,#F7F1E4,#EFE5D2);border:1px solid rgba(196,96,63,.4);border-radius:var(--radius);padding:24px 26px;margin-bottom:24px}
 .atelier-hero h3{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:var(--accent-soft);margin-bottom:9px;letter-spacing:-.4px}
 .atelier-hero p{font-size:13.5px;color:var(--soft);line-height:1.65}
@@ -247,7 +271,7 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 .matrix-card .mc-desc{font-size:11.5px;color:var(--muted);line-height:1.5;margin-bottom:10px}
 .matrix-card .mc-ex{font-size:11.5px;color:var(--accent-soft);line-height:1.55;background:rgba(196,96,63,.06);border-radius:8px;padding:9px 11px;margin-bottom:7px}
 .matrix-card .mc-ex:last-child{margin-bottom:0}
-.matrix-card .mc-ex b{color:#B7E4DF;font-weight:600}
+.matrix-card .mc-ex b{color:var(--ink-2);font-weight:600}
 /* COMPARATIF */
 .cmp-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:20px}
 .cmp{width:100%;border-collapse:collapse;min-width:760px}
@@ -266,10 +290,10 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 .jeu-pitch p{font-size:13px;color:var(--soft);line-height:1.65}
 .jeu-pitch p strong{color:var(--white)}
 .brainstorm{background:rgba(203,168,94,.08);border:1px solid rgba(203,168,94,.4);border-left:4px solid var(--gold);border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:16px}
-.brainstorm h4{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#E4C988;margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.brainstorm p{font-size:12.5px;color:#D8C49B;line-height:1.6;margin-bottom:9px}
+.brainstorm h4{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.brainstorm p{font-size:12.5px;color:var(--gold);line-height:1.6;margin-bottom:9px}
 .brainstorm ul{list-style:none;margin:0;padding:0}
-.brainstorm li{font-size:12.5px;color:#E0CFA6;line-height:1.6;padding-left:20px;position:relative;margin-bottom:5px}
+.brainstorm li{font-size:12.5px;color:var(--gold);line-height:1.6;padding-left:20px;position:relative;margin-bottom:5px}
 .brainstorm li::before{content:'';position:absolute;left:0;font-size:11px}
 .jeu-deliv{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-bottom:6px}
 .deliv-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius-sm);padding:14px 16px;transition:transform .35s var(--ease)}
@@ -310,6 +334,61 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 .engage{margin:16px 0;display:grid;gap:14px;}
 .eng-line{font-size:15px;border:1px solid #e8ddd0;border-radius:10px;padding:14px 16px;background:#fff;}
 .eng-line .dots{display:inline-block;border-bottom:1px dotted #b9ab99;min-width:52%;height:1em;}
+
+/* ===== L'ETABLI : corrections systeme ===== */
+body{background:var(--paper);color:var(--ink);font-size:16px;line-height:1.62}
+
+/* le titre de section : un filet et une etiquette, plus une icone absente */
+.sec-head{display:block!important;border-top:2px solid var(--ink);padding-top:var(--s2);margin-bottom:var(--s3)}
+.sec-icon{display:none!important}
+.sec-title{font-size:26px;letter-spacing:-.4px;line-height:1.2;margin:0}
+.sec-sub{color:var(--ink-2);margin-top:6px;max-width:62ch}
+.sec-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;
+ letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin-bottom:10px}
+
+/* la feuille de lecture */
+.card,.info-card,.guide-box,.exo-banner{background:var(--sheet);border:1px solid var(--rule);
+ border-radius:var(--radius);box-shadow:none}
+
+/* SURFACE OUTIL : tout ce qui se copie bascule en sombre */
+.prompt-card{background:var(--tool)!important;border:1px solid #2E2822!important;
+ border-radius:var(--radius);overflow:hidden}
+.prompt-card .pc-header{background:transparent;border-bottom:1px solid #2E2822;padding:12px 15px}
+.prompt-card .pc-title{color:var(--tool-ink)!important;font-weight:600}
+.prompt-card .pc-tag{color:var(--tool-acc)!important;background:rgba(232,135,95,.12);
+ border:1px solid rgba(232,135,95,.28);border-radius:5px;padding:3px 9px;
+ font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.prompt-card .pc-body{background:transparent!important;color:var(--tool-ink)!important;
+ font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.62;border:none!important;
+ padding:15px;width:100%;resize:vertical}
+.prompt-card .pc-footer{border-top:1px solid #2E2822;padding:10px 15px;background:transparent}
+.copy-btn{background:var(--tool-acc);color:#1C1814;border:none;border-radius:6px;
+ padding:7px 14px;font-weight:600;font-size:12.5px;cursor:pointer;
+ transition:background .18s var(--ease),transform .12s var(--ease)}
+.copy-btn:hover{background:#F0996F}
+.copy-btn:active{transform:translateY(1px)}
+
+/* la barre d'onglets : l'actif doit se voir */
+.tab-btn{color:var(--ink-2);font-size:12.5px;padding:13px 14px;border-bottom:2px solid transparent;
+ transition:color .18s var(--ease),border-color .18s var(--ease)}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn.active{color:var(--ink);font-weight:600;border-bottom-color:var(--coral);
+ background:linear-gradient(180deg,rgba(163,71,36,.05),transparent)}
+.tabs-wrap{background:var(--paper)}
+
+/* listes : des marqueurs reels, plus des puces vides */
+ul li::before{content:''!important}
+.guide-steps ol{counter-reset:gs;list-style:none;padding:0}
+.guide-steps ol li{counter-increment:gs;position-relative;padding-left:34px;position:relative;margin-bottom:11px}
+.guide-steps ol li::before{content:counter(gs);position:absolute;left:0;top:1px;width:23px;height:23px;
+ border-radius:6px;background:var(--rule-2);color:var(--coral);font-family:'JetBrains Mono',monospace;
+ font-size:11.5px;display:grid;place-items:center;font-weight:500}
+
+/* accessibilite et mouvement */
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:4px}
+button,a,.name-card,.tab-btn{cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -971,7 +1050,7 @@ function renderProjetsClaude(){
  h += `<div class="cat-label"> Sous-exercice B - L'Audio Overview (le résumé qu'on écoute)</div> <div class="station"> <div class="station-head"><div class="st-emoji"></div><div><div class="st-name">B · Transformer vos documents en conversation audio</div><div class="st-sub">15 min · l'effet « waouh » de la journée, avec un vrai usage derrière</div></div></div> <div class="station-intro"> <strong>Ce que c'est :</strong> les Projets Claude génère une discussion audio de plusieurs minutes entre deux voix qui commentent vos documents. Ça ressemble à une émission de radio. Ce n'est pas un gadget : ça se réécoute en voiture, et c'est la façon la plus indolore de s'approprier un document qu'on n'aurait jamais lu.<br><br> <strong>Où cliquer :</strong> dans le panneau de droite (« Studio » ou équivalent), cherchez <strong>« Résumé audio » / « Audio Overview »</strong>  bouton <strong>Générer</strong>. Comptez 2 à 5 minutes de génération.<br><br> <strong>Les étapes :</strong><br> 1. Sur le notebook du sous-exercice A, lancez la génération de l'Audio Overview.<br> 2. Pendant que ça tourne, passez au sous-exercice C - ne restez pas à attendre.<br> 3. Une fois généré, <strong>écoutez les 2 premières minutes</strong>. Jugez : est-ce que ça dit juste ? Est-ce que ça survend ?<br> 4. <strong>Cherchez l'option de personnalisation</strong> (« Personnaliser » avant de générer) : vous pouvez orienter le contenu, par exemple « concentre-toi sur les obligations pratiques, ignore le contexte historique ». Ça change tout.<br> 5. Décidez : sur quel document de votre métier ça serait vraiment utile ?<br><br> <strong> Réussi si :</strong> vous avez un audio écoutable et vous savez dire à quel document de votre quotidien vous l'appliqueriez.<br> <strong> Le piège :</strong> le prendre pour argent comptant. Le format « conversation » est très convaincant et donne une impression d'autorité - mais c'est un résumé généré, avec les approximations d'un résumé. Pour tout point qui engage, on retourne au document source.<br> <span class="test-flag"> À TESTER</span> Le français est supporté, mais la qualité et la disponibilité <strong>varient selon les versions</strong>. La longueur et le degré de personnalisation évoluent aussi. Si le résultat sort en anglais, cherchez le réglage de langue du notebook.
  </div> </div>`;
 
- h += `<div class="cat-label"> Sous-exercice C - La carte mentale (Mind Map)</div> <div class="station"> <div class="station-head"><div class="st-emoji"></div><div><div class="st-name">C · Voir la structure d'un corpus d'un coup d'œil</div><div class="st-sub">15 min · pour comprendre avant de lire</div></div></div> <div class="station-intro"> <strong>Ce que c'est :</strong> une carte arborescente des thèmes contenus dans vos sources. Vous dépliez les branches, et chaque nœud est cliquable : il lance une question sur ce thème précis.<br><br> <strong>Où cliquer :</strong> panneau de droite (« Studio »)  <strong>« Carte mentale » / « Mind Map »</strong>  Générer.<br><br> <strong>Les étapes :</strong><br> 1. Générez la carte mentale sur votre notebook.<br> 2. <strong>Dépliez les branches</strong> une par une. Vous voyez la structure réelle de vos documents - souvent différente de celle que vous imaginiez.<br> 3. <strong>Cliquez sur un nœud</strong> : il lance automatiquement une question sourcée sur ce thème.<br> 4. <strong>Cherchez ce qui manque.</strong> C'est l'usage le plus intéressant : une branche vide ou anémique sur un sujet que vous pensiez couvert, c'est un trou dans votre documentation. Vous venez de trouver quelque chose que personne n'avait vu.<br><br> <strong> Réussi si :</strong> vous avez identifié au moins un thème que vous pensiez traité et qui ne l'est pas, ou une structure que vous n'aviez pas perçue en lisant.<br> <strong> Le piège :</strong> la trouver jolie et passer à autre chose. La valeur est dans les <strong>trous</strong>, pas dans les branches bien remplies.<br> <span class="test-flag"> À TESTER</span> Disponibilité et nom du bouton <strong>varient selon les versions</strong>.
+ h += `<div class="cat-label"> Sous-exercice C - La carte mentale (Mind Map)</div> <div class="station"> <div class="station-head"><div class="st-emoji"></div><div><div class="st-name">C · Voir la structure d'un corpus d'un coup d'œil</div><div class="st-sub">15 min · pour comprendre avant de lire</div></div></div> <div class="station-intro"> <strong>Ce que c'est :</strong> une carte arborescente des thèmes contenus dans vos sources. Vous dépliez les branches, et chaque nœud est cliquable : il lance une question sur ce thème précis.<br><br> <strong>Où cliquer :</strong> panneau de droite (« Studio »)  <strong>« Carte mentale » / « Mind Map »</strong>Générer.<br><br> <strong>Les étapes :</strong><br> 1. Générez la carte mentale sur votre notebook.<br> 2. <strong>Dépliez les branches</strong> une par une. Vous voyez la structure réelle de vos documents - souvent différente de celle que vous imaginiez.<br> 3. <strong>Cliquez sur un nœud</strong> : il lance automatiquement une question sourcée sur ce thème.<br> 4. <strong>Cherchez ce qui manque.</strong> C'est l'usage le plus intéressant : une branche vide ou anémique sur un sujet que vous pensiez couvert, c'est un trou dans votre documentation. Vous venez de trouver quelque chose que personne n'avait vu.<br><br> <strong> Réussi si :</strong> vous avez identifié au moins un thème que vous pensiez traité et qui ne l'est pas, ou une structure que vous n'aviez pas perçue en lisant.<br> <strong> Le piège :</strong> la trouver jolie et passer à autre chose. La valeur est dans les <strong>trous</strong>, pas dans les branches bien remplies.<br> <span class="test-flag"> À TESTER</span> Disponibilité et nom du bouton <strong>varient selon les versions</strong>.
  </div> </div>`;
 
  h += `<div class="cat-label"> Sous-exercice D - Comparer deux documents ou deux normes</div> <div class="station"> <div class="station-head"><div class="st-emoji"></div><div><div class="st-name">D · Le sous-exercice le plus utile au quotidien</div><div class="st-sub">15 min · l'usage qui justifie l'outil à lui seul</div></div></div> <div class="station-intro"> <strong>Le cas type :</strong> vous avez une norme (ou une nouvelle version d'un texte) d'un côté, et votre procédure interne de l'autre. Question : est-ce qu'on est conforme, et qu'est-ce qui manque ? Aujourd'hui, ça vous prend une demi-journée de lecture croisée. Ici, ça prend dix minutes - et vous gardez la traçabilité de chaque écart.<br><br> <strong>Où aller :</strong> même notebook, mais chargez cette fois <strong>exactement deux sources</strong> (ou deux groupes clairement identifiés). Nommez-les clairement dans le panneau Sources.<br><br> <strong>Les étapes :</strong><br> 1. Chargez le <strong>document A</strong> (ex : la norme, le référentiel, le texte réglementaire - document public de préférence).<br> 2. Chargez le <strong>document B</strong> (ex : votre procédure interne, anonymisée et non confidentielle).<br> 3. Utilisez le prompt de comparaison ci-dessous.<br> 4. <strong>Vérifiez chaque écart</strong> qu'il signale en cliquant sur les citations des deux côtés. Un écart mal identifié est pire qu'un écart non identifié.<br> 5. Demandez-lui le <strong>plan d'action</strong> : ce qu'il faudrait ajouter au document B pour couvrir A.<br><br> <strong> Réussi si :</strong> vous avez un tableau d'écarts entre deux documents, chaque écart étant vérifié par une citation des deux côtés.<br> <strong> Le piège :</strong> lui faire dire « on est conforme ». Il n'en sait rien : il compare des textes, il n'audite pas votre entreprise. Il vous montre les écarts <strong>documentaires</strong> - la conformité réelle, c'est ce que vous faites, pas ce qui est écrit.

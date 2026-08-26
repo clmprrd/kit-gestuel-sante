@@ -784,18 +784,24 @@ Tu es ergonome et designer pédagogique chez Gestuel'Santé. Tu conçois des fic
           </div>
 
           <div class="bento-card">
-            <h3 style="font-size:17px; margin-bottom:12px;">🏷️ Balises XML Structurantes</h3>
-            <p style="margin-bottom:10px;">Isolez vos données des consignes pour éviter toute confusion :</p>
+            <h3 style="font-size:17px; margin-bottom:12px;">🏷️ Balises XML & Règle d'Or</h3>
+            <p style="margin-bottom:10px;">Placez vos données brutes en haut et vos consignes d'action à la fin :</p>
             <div class="prompt-textarea-wrap">
-              <textarea class="prompt-textarea" style="min-height:110px;" readonly><contexte>
-Entreprise de logistique, 200 caristes et préparateurs.
-</contexte>
+              <textarea class="prompt-textarea" style="min-height:130px;" readonly><notes_vocales>
+"Après observation sur le poste d'emballage, rachis lombaire très sollicité."
+</notes_vocales>
 
-<retours_bruts>
-"Le rythme du matin tire sur les lombaires en fin de poste."
-</retours_bruts></textarea>
+<consignes>
+- Rédige la synthèse en 3 actions préventives immédiates.
+- Format Markdown prêt à l'export dans un Artifact.
+</consignes></textarea>
             </div>
           </div>
+        </div>
+
+        <div class="callout-box callout-teal" style="margin-top:20px;">
+          <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <div><strong>Astuce Quota & Performance :</strong> Pour corriger une réponse, utilisez le bouton <strong>« Éditer le message »</strong> sur votre prompt précédent au lieu d'enchaîner des messages de correction. Cela divise par deux la consommation de contexte.</div>
         </div>
       `;
     }
@@ -806,24 +812,37 @@ Entreprise de logistique, 200 caristes et préparateurs.
     render: () => {
       return `
         <div class="section-header">
-          <div class="section-tag">Choix du Moteur IA</div>
+          <div class="section-tag">Génération Claude 5 · Choix du Moteur IA</div>
           <h2 class="section-title">Quel Modèle Choisir dans Claude.ai ?</h2>
-          <p class="section-desc">Sélectionnez le modèle adapté à la complexité de votre tâche.</p>
+          <p class="section-desc">Claude Pro vous donne accès aux modèles de pointe d'Anthropic avec 1M de tokens de contexte et Adaptive Thinking.</p>
         </div>
 
         <div class="grid-3">
-          <div class="bento-card">
-            <h3 style="font-size:17px; margin-bottom:8px;">⚡ Sonnet 3.7 (90% du temps)</h3>
-            <p style="font-size:13.5px; color:var(--text-muted);">Idéal pour la rédaction des comptes-rendus, fiches d'échauffement, posts LinkedIn et courriers OPCO.</p>
+          <div class="bento-card" style="border: 2px solid var(--terracotta); background: rgba(217,119,87,0.06);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <h3 style="font-size:17px; color:var(--terracotta-light);">⚡ Sonnet 5 (Par défaut · 90%)</h3>
+              <span class="prompt-badge">Recommandé</span>
+            </div>
+            <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">Le modèle polyvalent et autonome par excellence. Conçu pour le travail agentique, la rédaction de comptes-rendus, les fiches pratiques et l'analyse de documents.</p>
+            <div style="font-size:12px; color:var(--terracotta); font-weight:600;">1M tokens contexte · Curseur d'effort réglable</div>
           </div>
+
           <div class="bento-card">
-            <h3 style="font-size:17px; margin-bottom:8px;">🧠 Claude Opus (Raisonnement lourd)</h3>
-            <p style="font-size:13.5px; color:var(--text-muted);">Parfait pour dépouiller les cahiers des charges d'appels d'offres de 50 pages et conventions complexes.</p>
+            <h3 style="font-size:17px; margin-bottom:8px;">🧠 Claude Opus 5 (Raisonnement lourd)</h3>
+            <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">Idéal pour dépouiller les cahiers des charges d'appels d'offres volumineux, les audits Qualiopi complexes et les synthèses croisées multi-sources.</p>
+            <div style="font-size:12px; color:var(--indigo); font-weight:600;">Intelligence frontière · Réflexion approfondie</div>
           </div>
+
           <div class="bento-card">
-            <h3 style="font-size:17px; margin-bottom:8px;">🚀 Claude Haiku (Instantané)</h3>
-            <p style="font-size:13.5px; color:var(--text-muted);">Conçu pour la correction orthographique rapide, le renommage de titres et les micro-tâches.</p>
+            <h3 style="font-size:17px; margin-bottom:8px;">🚀 Claude Haiku 4.5 (Instantané)</h3>
+            <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">Modèle ultra-rapide conçu pour la correction orthographique, le formatage express, les synthèses en 1 phrase et les tâches légères.</p>
+            <div style="font-size:12px; color:var(--mint); font-weight:600;">Ultra-léger · Réponse en 1 seconde</div>
           </div>
+        </div>
+
+        <div class="callout-box callout-amber" style="margin-top:20px;">
+          <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <div><strong>Adaptive Thinking (Raisonnement) :</strong> Sonnet 5 ajuste automatiquement son temps de réflexion selon la difficulté de la tâche. Vous pouvez moduler l'effort (de faible à maximal) directement depuis l'interface.</div>
         </div>
       `;
     }
@@ -836,17 +855,30 @@ Entreprise de logistique, 200 caristes et préparateurs.
         <div class="section-header">
           <div class="section-tag">Conformité & Éthique Santé</div>
           <h2 class="section-title">Règles de Confidentialité des Données</h2>
-          <p class="section-desc">La prévention des TMS touche au secret médical : appliquez ces règles intangibles.</p>
+          <p class="section-desc">La prévention des TMS touche au secret médical et aux données d'entreprise : appliquez ces règles intangibles.</p>
         </div>
 
         <div class="callout-box callout-rose">
           <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
-          <div><strong>STRICTEMENT INTERDIT :</strong> Ne jamais entrer de noms/prénoms de salariés associés à des diagnostics médicaux individuels ou comptes-rendus d'examens.</div>
+          <div><strong>RÈGLE D'OR : ANONYMISATION STRICTE</strong><br>Ne jamais entrer de noms, prénoms ou coordonnées de salariés associés à des diagnostics médicaux, douleurs ou comptes-rendus d'examens. Utilisez des personas génériques (ex: <em>« Opérateur logistique, 45 ans »</em>).</div>
         </div>
 
-        <div class="bento-card">
-          <h3 style="font-size:17px; margin-bottom:8px;">⚙️ Désactiver l'entraînement sur vos données</h3>
-          <p style="font-size:13.5px; color:var(--text-muted);">Dans votre compte Claude.ai → <strong>Settings > Privacy Choices</strong>, vérifiez que l'option d'entraînement des modèles sur vos conversations est désactivée.</p>
+        <div class="grid-2">
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">⚙️ Désactiver l'entraînement (Opt-Out)</h3>
+            <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:12px;">Sur Claude Pro, assurez-vous de désactiver l'entraînement pour préserver la confidentialité de vos échanges.</p>
+            <div style="font-size:13px; font-family:var(--font-mono); background:#06090F; padding:10px; border-radius:6px; color:var(--terracotta-light);">
+              Settings > Privacy > Décocher "Help improve Claude"
+            </div>
+          </div>
+
+          <div class="bento-card">
+            <h3 style="font-size:17px; margin-bottom:8px;">🧠 Contrôle de la Mémoire</h3>
+            <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:12px;">Claude filtre automatiquement les données de santé de sa mémoire, mais vous pouvez consulter et purger vos souvenirs à tout moment.</p>
+            <div style="font-size:13px; font-family:var(--font-mono); background:#06090F; padding:10px; border-radius:6px; color:var(--teal);">
+              Settings > Memory > Visualiser / Supprimer les entrées
+            </div>
+          </div>
         </div>
       `;
     }

@@ -314,7 +314,7 @@ body::after{content:'';position:fixed;top:-30%;left:50%;transform:translateX(-50
 <body>
 <!-- ══ GATE : entrée par nom ══ -->
 <div id="gate">
-  <div class="gate-kicker">Gestuel'Santé · Journée IA</div>
+  <div class="gate-kicker">Gestuel'Santé · 26 et 27 août 2026</div>
   <h1 class="gate-title">Kit Claude - <span class="g-accent">Gestuel'Santé</span></h1>
   <p class="gate-sub">Deux jours d'atelier pour repartir avec des outils que vous utilisez déjà, pas avec des notes. Chaque onglet est autonome : vous pouvez tout refaire seul dans trois mois. Cliquez sur votre prénom.</p>
   <p class="gate-hint">👇 Cliquez sur votre nom pour entrer dans votre kit</p>
@@ -353,13 +353,13 @@ const PEOPLE = [
   { id:"camille",  first:"Camille",  last:"",          role:"Direction et coordination",       job:"dir"   },
   { id:"marie",    first:"Marie",    last:"CAGNAC",    role:"Marketing et relation client",    job:"com"   },
   { id:"myriam",   first:"Myriam",   last:"MOUSSARD",  role:"Administratif et Qualiopi",       job:"admin" },
-  { id:"adeline",  first:"Adeline",  last:"",          role:"Formatrice kinesitherapeute TMS", job:"kine"  },
-  { id:"clement",  first:"Clement",  last:"",          role:"Formateur kinesitherapeute TMS",  job:"kine"  },
-  { id:"florian",  first:"Florian",  last:"",          role:"Formateur kinesitherapeute TMS",  job:"kine"  },
-  { id:"matthieu", first:"Matthieu", last:"",          role:"Formateur kinesitherapeute TMS",  job:"kine"  },
-  { id:"nicolas",  first:"Nicolas",  last:"",          role:"Formateur kinesitherapeute TMS",  job:"kine"  },
-  { id:"romain",   first:"Romain",   last:"",          role:"Formateur kinesitherapeute TMS",  job:"kine"  },
-  { id:"stephane", first:"Stephane", last:"",          role:"Formateur kinesitherapeute TMS",  job:"kine"  },
+  { id:"adeline",  first:"Adeline",  last:"",          role:"Formatrice kinésithérapeute TMS", job:"kine"  },
+  { id:"clement",  first:"Clément",  last:"",          role:"Formateur kinésithérapeute TMS",  job:"kine"  },
+  { id:"florian",  first:"Florian",  last:"",          role:"Formateur kinésithérapeute TMS",  job:"kine"  },
+  { id:"matthieu", first:"Matthieu", last:"",          role:"Formateur kinésithérapeute TMS",  job:"kine"  },
+  { id:"nicolas",  first:"Nicolas",  last:"",          role:"Formateur kinésithérapeute TMS",  job:"kine"  },
+  { id:"romain",   first:"Romain",   last:"",          role:"Formateur kinésithérapeute TMS",  job:"kine"  },
+  { id:"stephane", first:"Stéphane", last:"",          role:"Formateur kinésithérapeute TMS",  job:"kine"  },
 ];
 
 let currentPerson = null;
@@ -423,15 +423,15 @@ const LIENS_3 = "<a href='https://claude.ai' target='_blank' rel='noopener'>clau
 function renderHome(){
   const p = currentPerson;
   return `
-  ${secHead("🏠","Bienvenue "+(p?p.first:'')+" - Journée IA Gestuel'Santé",
+  ${secHead("🏠","Bienvenue "+(p?p.first:'')+" - Formation Claude Gestuel'Santé",
     "Formation Claude · 2 jours · La Cocotte Gaillarde, Ussac · 26 et 27 août 2026 · 9h30-12h30 / 13h30-17h30 · 10 participants. Chaque onglet est autonome : vous pouvez tout refaire seul après la formation.",
     "Formateur : Clément Predo - Axem IA")}
   <div class="perso-hero">
     <div class="ph-kicker">Comment marche la journée</div>
-    <h3>Zéro théorie. Des tâches que vous faites déjà, faites plus vite.</h3>
+    <h3>Zéro théorie. Les tâches que vous faites déjà, faites plus vite.</h3>
     <p>Pas de futurologie, pas de débat de société : on prend <strong>vos tâches réelles</strong> - les Excel à remplir chaque mois, les documents-types à mettre en forme, les indicateurs à sortir, la veille à faire - et on regarde <strong>ce que l'IA fait dessus aujourd'hui</strong>, avec ses limites.</p>
     <p>Vous n'avez <strong>pas d'outil IA d'entreprise déployé</strong>. C'est une bonne nouvelle : on ne vous vend pas un outil, on vous donne une <strong>méthode portable</strong> qui marche sur Claude indifféremment - et un <strong>panorama honnête du marché</strong> pour choisir en connaissance de cause.</p>
-    <div class="ph-tags"><span class="ph-tag">Chaque exo est autonome</span><span class="ph-tag">Prompts copiables en 1 clic</span><span class="ph-tag">Sur VOS vrais cas, anonymisés</span><span class="ph-tag">Aucun outil imposé</span></div>
+    <div class="ph-tags"><span class="ph-tag">Chaque exo est autonome</span><span class="ph-tag">Prompts copiables en 1 clic</span><span class="ph-tag">Sur VOS vrais cas, anonymisés</span><span class="ph-tag">Claude Pro pour tous</span></div>
   </div>
   <div class="home-section">
     <h3>📅 Programme des deux journées</h3>
